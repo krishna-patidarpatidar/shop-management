@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Billing = () => {
     const [invoices, setInvoices] = useState([
         { id: 1, number: 'INV001', customer: 'Customer 1', amount: '$100', status: 'Paid' },
         { id: 2, number: 'INV002', customer: 'Customer 2', amount: '$150', status: 'Unpaid' },
-        { id: 2, number: 'INV002', customer: 'Customer 2', amount: '$150', status: 'Unpaid' },
-        { id: 2, number: 'INV002', customer: 'Customer 2', amount: '$150', status: 'Unpaid' },
+        { id: 3, number: 'INV002', customer: 'Customer 3', amount: '$150', status: 'Unpaid' },
+        { id: 4, number: 'INV002', customer: 'Customer 4', amount: '$150', status: 'Unpaid' },
         // Add more invoices as needed
     ]);
 
@@ -26,7 +27,7 @@ const Billing = () => {
             <div className="flex justify-between">
                 <h2 className="text-xl font-bold">Invoices</h2>
                 <button className="px-4 py-2 text-white bg-green-500 rounded-lg">
-                    Create Invoice
+                <Link to={'/add-bill'}> Create Invoice</Link>
                 </button>
             </div>
             <table className="w-full mt-4 bg-white shadow">

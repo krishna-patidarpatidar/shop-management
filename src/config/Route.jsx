@@ -12,6 +12,7 @@ import AddCustomer from '../screens/AddCustomer.jsx'
 import AddVandors from '../screens/AddVandors.jsx'
 import ShowTransaction from '../screens/ShowTransaction.jsx'
 import AddTransaction from '../screens/AddTransaction.jsx'
+import AddBill from '../screens/AddBill.jsx'
 const Route = createBrowserRouter([
     {
         path: "/",
@@ -37,6 +38,9 @@ const Route = createBrowserRouter([
             } ,
             {
                 path: '/bills', element: <Billing />
+            },
+            {
+                path: '/add-bill', element: <AddBill />
             },
             {
                 path:'/add-contect',element:<AddCustomer/>
