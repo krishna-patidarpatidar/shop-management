@@ -22,10 +22,27 @@ const AddBill = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-            <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+            <div className="relative py-3 sm:max-w-4xl sm:mx-auto w-full">
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
                 <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-                    <h1 className="text-3xl font-bold text-center mb-8">Add Bill</h1>
+                    <h1 className="text-3xl font-bold text-center mb-8">
+                    <div className='flex justify-between border-b-[3px] pt-9 py-2'>
+                    <div className='flex items-center'>
+                        <div className='max-w-[50px] '>
+                            <img className='' src="https://upload.wikimedia.org/wikipedia/commons/1/10/Goddess_Maheshwari_%28%E0%A4%A6%E0%A5%87%E0%A4%B5%E0%A5%80_%E0%A4%AE%E0%A4%B9%E0%A5%87%E0%A4%B6%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%80%29.png" alt="" />
+                        </div>
+                        <div>
+                            <h1 className='flex gap-2 text-4xl font-semibold place-items-end'>
+                                Maa Bhavani <p className='text-lg font-medium'>sare center.</p>
+                            </h1>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 className='flex gap-2 text-4xl font-semibold place-items-end'>Invoice</h1>
+                    </div>
+
+                </div>
+                    </h1>
                     <Formik
                         initialValues={initialValues}
                         onSubmit={(values) => {
@@ -41,20 +58,25 @@ const AddBill = () => {
                                 const dueAmount = Math.max(totalAmount - values.amountReceived, 0);
                                 alert(JSON.stringify({ ...values, totalAmount, dueAmount }, null, 2));
                             }}>
-                                {/* Invoice Date */}
-                                <div className="flex flex-col">
+                               <div className='flex justify-between items-center'>
+                               <div  className="text-lg font-semibold mb-2">
+                                <p >Invoice No : 32145695</p>
+                                </div>
+                                <div className="flex flex-col items-end ">
                                     <label className="text-lg font-semibold mb-2" htmlFor="invoiceDate">Invoice Date</label>
                                     <input
                                         name="invoiceDate"
                                         type="date"
                                         value={values.invoiceDate}
                                         onChange={handleChange}
-                                        className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                        className=" py-2 px-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
                                     />
                                 </div>
+                               </div>
 
                                 {/* Customer Details */}
-                                <div className="flex flex-col">
+                               <div className='flex gap-3'>
+                               <div className="flex flex-col">
                                     <label className="text-lg font-semibold mb-2" htmlFor="customer.name">Customer Name</label>
                                     <input
                                         name="customer.name"
@@ -62,7 +84,7 @@ const AddBill = () => {
                                         value={values.customer.name}
                                         onChange={handleChange}
                                         placeholder="Customer Name"
-                                        className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                        className=" py-2 px-4 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
                                     />
                                 </div>
                                 <div className="flex flex-col">
@@ -76,38 +98,39 @@ const AddBill = () => {
                                         className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
                                     />
                                 </div>
+                               </div>
 
                                 {/* Product Details */}
                                 <FieldArray name="bills">
                                     {({ remove, push }) => (
                                         <div className="space-y-4">
-                                            <table className="w-full bg-white">
+                                            <table className=" mx-auto bg-white table-auto border-collapse">
                                                 <thead>
-                                                    <tr>
-                                                        <th className="py-2">Product Name</th>
-                                                        <th className="py-2">Quantity</th>
-                                                        <th className="py-2">Rate</th>
-                                                        <th className="py-2">Total</th>
-                                                        <th className="py-2">Remove</th>
+                                                    <tr className="bg-gray-200">
+                                                        <th className="py-2 px-[80px] border border-gray-300 text-center">Product Name</th>
+                                                        <th className="py-2 px-4 border border-gray-300 text-center">Quantity</th>
+                                                        <th className="py-2 px-4 border border-gray-300 text-center">Rate</th>
+                                                        <th className="py-2 px-4 border border-gray-300 text-center">Total</th>
+                                                        <th className="py-2 px-4 border border-gray-300 text-center">Remove</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {values.bills.map((bill, index) => (
                                                         <tr key={index}>
-                                                            <td className="py-2">
+                                                            <td className="py-2 px-4 border border-gray-300 text-center">
                                                                 <input
                                                                     name={`bills.${index}.product`}
                                                                     type="text"
                                                                     value={bill.product}
                                                                     onChange={handleChange}
                                                                     placeholder="Product Name"
-                                                                    className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                                                    className="px-2 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 w-full"
                                                                 />
                                                             </td>
-                                                            <td className="py-2">
+                                                            <td className="py-2 px-4 border border-gray-300 text-center">
                                                                 <input
                                                                     name={`bills.${index}.quantity`}
-                                                                    type="number"
+                                                                    type="text"
                                                                     value={bill.quantity}
                                                                     onChange={(e) => {
                                                                         const quantity = parseFloat(e.target.value || 0);
@@ -117,13 +140,13 @@ const AddBill = () => {
                                                                         setFieldValue(`bills.${index}.total`, total);
                                                                     }}
                                                                     placeholder="Quantity"
-                                                                    className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                                                    className="px-2 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 w-full"
                                                                 />
                                                             </td>
-                                                            <td className="py-2">
+                                                            <td className="py-2 px-4 border border-gray-300 text-center">
                                                                 <input
                                                                     name={`bills.${index}.price`}
-                                                                    type="number"
+                                                                    type="text"
                                                                     value={bill.price}
                                                                     onChange={(e) => {
                                                                         const price = parseFloat(e.target.value || 0);
@@ -133,19 +156,19 @@ const AddBill = () => {
                                                                         setFieldValue(`bills.${index}.total`, total);
                                                                     }}
                                                                     placeholder="Rate"
-                                                                    className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                                                    className="px-2 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 w-full"
                                                                 />
                                                             </td>
-                                                            <td className="py-2">
+                                                            <td className="py-2 px-4 border border-gray-300 text-center">
                                                                 <input
                                                                     name={`bills.${index}.total`}
                                                                     type="number"
                                                                     value={bill.total}
                                                                     readOnly
-                                                                    className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-100"
+                                                                    className="px-2 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-100 w-full"
                                                                 />
                                                             </td>
-                                                            <td className="py-2">
+                                                            <td className="py-2 px-4 border border-gray-300 text-center">
                                                                 <button type="button" className="text-red-600 hover:text-red-800 font-semibold" onClick={() => remove(index)}>Remove</button>
                                                             </td>
                                                         </tr>
@@ -158,7 +181,8 @@ const AddBill = () => {
                                         </div>
                                     )}
                                 </FieldArray>
-
+<div className='flex justify-between'>
+    
                                 {/* Total Amount */}
                                 <div className="flex flex-col">
                                     <label htmlFor="totalAmount" className="text-lg font-semibold">Total Amount</label>
@@ -176,7 +200,7 @@ const AddBill = () => {
                                     <label htmlFor="amountReceived" className="text-lg font-semibold">Amount Received</label>
                                     <input
                                         name="amountReceived"
-                                        type="number"
+                                        type="text"
                                         value={values.amountReceived}
                                         onChange={(e) => {
                                             const receivedAmount = parseFloat(e.target.value || 0);
@@ -195,12 +219,12 @@ const AddBill = () => {
                                     <label htmlFor="dueAmount" className="text-lg font-semibold">Due Amount</label>
                                     <input
                                         name="dueAmount"
-                                        type="number"
                                         value={values.dueAmount}
                                         readOnly
                                         className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-100"
                                     />
                                 </div>
+</div>
 
                                 <div className="text-center">
                                     <button type="submit" className="px-6 py-2 bg-yellow-500 text-white font-semibold rounded-md shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition">Submit</button>

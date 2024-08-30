@@ -13,6 +13,8 @@ import AddVandors from '../screens/AddVandors.jsx'
 import ShowTransaction from '../screens/ShowTransaction.jsx'
 import AddTransaction from '../screens/AddTransaction.jsx'
 import AddBill from '../screens/AddBill.jsx'
+import ShowBill from '../screens/ShowBill.jsx'
+import PamentIn from '../screens/PamentIn.jsx'
 const Route = createBrowserRouter([
     {
         path: "/",
@@ -41,6 +43,12 @@ const Route = createBrowserRouter([
             },
             {
                 path: '/add-bill', element: <AddBill />
+            },
+            {
+                path: '/show-bill', element: <ShowBill />
+            },
+            {
+                path: '/pament-in', element: <PamentIn />
             },
             {
                 path:'/add-contect',element:<AddCustomer/>

@@ -10,10 +10,7 @@ const Billing = () => {
         // Add more invoices as needed
     ]);
 
-    const handleView = (id) => {
-        // Implement navigation to the detailed view page or modal
-        alert(`View details for Invoice ID: ${id}`);
-    };
+   
 
     const handleDelete = (id) => {
         const confirmed = window.confirm('Are you sure you want to delete this invoice?');
@@ -48,12 +45,17 @@ const Billing = () => {
                                 <td className="p-2">{invoice.customer}</td>
                                 <td className="p-2">{invoice.amount}</td>
                                 <td className="p-2">{invoice.status}</td>
-                                <td className="p-2">
+                                <td className="p-2 flex gap-1">
+                                    <button className='px-2 py-1 text-white bg-green-600 rounded'>
+                                        <Link to={'/pament-in'}>pay In</Link>
+                                    </button>
                                     <button
-                                        onClick={() => handleView(invoice.id)}
-                                        className="px-2 py-1 text-white bg-blue-500 rounded mr-2"
+                                        className="px-2 py-1 text-white bg-blue-500 rounded "
                                     >
-                                        View
+                                       <Link to={'/show-bill'}> View</Link>
+                                    </button>
+                                    <button className='px-2 py-1 text-white bg-gray-700 rounded'>
+                                        <Link to={'/add-bill'}>Edit</Link>
                                     </button>
                                     <button
                                         onClick={() => handleDelete(invoice.id)}
