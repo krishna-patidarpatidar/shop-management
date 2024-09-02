@@ -3,101 +3,119 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 
-
-
 const RegistrationSchema = yup.object().shape({
-    name: yup.string().required().min(5).max(15),
-    email: yup.string().email().required(),
-    number: yup.string().required().matches(/^[0-9]{10}$/, "Mobile number must be 10 digits"),
-
-    password: yup.string().required().min(8),
-    confirmPassword: yup.string().oneOf([yup.ref("password")], "confirm password must be same as password").required()
-
+    name: yup.string().required('Name is required').min(5, 'Name must be at least 5 characters').max(15, 'Name can\'t be more than 15 characters'),
+    email: yup.string().email('Invalid email').required('Email is required'),
+    number: yup.string().required('Mobile number is required').matches(/^[0-9]{10}$/, "Mobile number must be 10 digits"),
+    password: yup.string().required('Password is required').min(8, 'Password must be at least 8 characters'),
+    confirmPassword: yup.string().oneOf([yup.ref("password")], "Passwords must match").required('Confirm password is required')
 })
 
 const Registration = () => {
 
     return (
-        <div className='max-w-[450px] mx-auto text-xl mt-7 border p-4 rounded-xl bg-slate-200'>
-            <Formik
-                initialValues={{ name: '', email: '', number: '', password: '', confirmPassword: '' }}
-                validationSchema={RegistrationSchema}
-                onSubmit={(values, { setSubmitting }) => {
-                    setSubmitting(false);
-                }}
-            >
-                {({ values, errors, handleBlur, handleChange, handleSubmit, touched, isSubmitting }) => (
-                    <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
-                        <h1 className='text-2xl text-center'>Registration Form</h1>
-                        <div className='flex flex-col'>
-                            <label htmlFor="">Name</label>
-                            <input className='border rounded-lg p-1'
-                                placeholder=' enter your name'
-                                type="text"
-                                name='name'
-                                value={values.name}
-                                onChange={handleChange}
-                                onBlur={handleBlur} />
-                            {touched.name && <span className='text-red-600 text-sm text-left absolute mt-[61px]'>{errors.name}</span>}
-                        </div>
-                        <div className='flex flex-col'>
-                            <label htmlFor="">Email</label>
-                            <input className='border rounded-lg p-1'
-                                placeholder=' enter your Email'
-                                type="text"
-                                name='email'
-                                value={values.email}
-                                onChange={handleChange}
-                                onBlur={handleBlur} />
-                            {touched.email && <span className='text-red-600 text-sm text-left absolute mt-[61px]'>{errors.email}</span>}
-                        </div>
-                        <div className='flex flex-col'>
-                            <label htmlFor="">Mobile Number</label>
-                            <input className='border rounded-lg p-1'
-                                placeholder='enter your Mobile Number'
-                                type="text"
-                                name='number'
-                                value={values.number}
-                                onChange={handleChange}
-                                onBlur={handleBlur} />
-                            {touched.number && <span className='text-red-600 text-sm text-left absolute mt-[61px]'>{errors.number}</span>}
-                        </div>
-                        <div className='flex flex-col'>
-                            <label htmlFor="">Password</label>
-                            <input className='border rounded-lg p-1'
-                                placeholder='enter new password'
-                                type="password"
-                                name='password'
-                                value={values.password}
-                                onChange={handleChange}
-                                onBlur={handleBlur} />
-                            {touched.password && <span className='text-red-600 text-sm text-left absolute mt-[61px]'>{errors.password}</span>}
-                        </div>
-                        <div className='flex flex-col'>
-                            <label htmlFor="">Confirm Password</label>
-                            <input className='border rounded-lg p-1'
-                                placeholder='confirm password'
-                                type="password"
-                                name='confirmPassword'
-                                value={values.confirmPassword}
-                                onChange={handleChange}
-                                onBlur={handleBlur} />
-                            {touched.confirmPassword && <span className='text-red-600 text-sm text-left absolute mt-[61px]'>{errors.confirmPassword}</span>
-                            }
-                        </div>
-                        <Link to={'/'} className='border border-black rounded-lg px-1 mt-2 text-center bg-blue-600'>
-                        <button type="submit" disabled={isSubmitting}>Submit</button>
-                        </Link>
-                        <div className=' gap-2 md:flex'>
-                        <p>Already registered ?</p> <Link className='text-lg text-blue-800' to={'/login'}>Login Hare</Link>
-                        </div>
+        <div className='min-h-screen flex justify-center items-center bg-gray-100'>
+            <div className='max-w-lg w-full bg-white p-6 rounded-lg shadow-lg'>
+                <Formik
+                    initialValues={{ name: '', email: '', number: '', password: '', confirmPassword: '' }}
+                    validationSchema={RegistrationSchema}
+                    onSubmit={(values, { setSubmitting }) => {
+                        setSubmitting(false);
+                        alert('Registration Successful');
+                    }}
+                >
+                    {({ values, errors, handleBlur, handleChange, handleSubmit, touched, isSubmitting }) => (
+                        <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+                            <h1 className='text-3xl font-bold text-center text-blue-600 mb-6'>Create a new account</h1>
+                            
+                            <div className='flex flex-col'>
+                                <label htmlFor="name" className='text-lg'>Name</label>
+                                <input
+                                    className={`border p-2 rounded-lg ${touched.name && errors.name ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                                    type="text"
+                                    name='name'
+                                    placeholder='Enter your name'
+                                    value={values.name}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {touched.name && errors.name && <span className='text-red-600 text-sm mt-1'>{errors.name}</span>}
+                            </div>
 
+                            <div className='flex flex-col'>
+                                <label htmlFor="email" className='text-lg'>Email</label>
+                                <input
+                                    className={`border p-2 rounded-lg ${touched.email && errors.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                                    type="text"
+                                    name='email'
+                                    placeholder='Enter your email'
+                                    value={values.email}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {touched.email && errors.email && <span className='text-red-600 text-sm mt-1'>{errors.email}</span>}
+                            </div>
 
-                    </form>
-                )}
+                            <div className='flex flex-col'>
+                                <label htmlFor="number" className='text-lg'>Mobile Number</label>
+                                <input
+                                    className={`border p-2 rounded-lg ${touched.number && errors.number ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                                    type="text"
+                                    name='number'
+                                    placeholder='Enter your mobile number'
+                                    value={values.number}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {touched.number && errors.number && <span className='text-red-600 text-sm mt-1'>{errors.number}</span>}
+                            </div>
 
-            </Formik>
+                            <div className='flex flex-col'>
+                                <label htmlFor="password" className='text-lg'>Password</label>
+                                <input
+                                    className={`border p-2 rounded-lg ${touched.password && errors.password ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                                    type="password"
+                                    name='password'
+                                    placeholder='Enter new password'
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {touched.password && errors.password && <span className='text-red-600 text-sm mt-1'>{errors.password}</span>}
+                            </div>
 
+                            <div className='flex flex-col'>
+                                <label htmlFor="confirmPassword" className='text-lg'>Confirm Password</label>
+                                <input
+                                    className={`border p-2 rounded-lg ${touched.confirmPassword && errors.confirmPassword ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                                    type="password"
+                                    name='confirmPassword'
+                                    placeholder='Confirm  password'
+                                    value={values.confirmPassword}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {touched.confirmPassword && errors.confirmPassword && <span className='text-red-600 text-sm mt-1'>{errors.confirmPassword}</span>}
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className='w-full bg-blue-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400'
+                            >
+                                Sign Up
+                            </button>
+
+                            <div className='flex justify-center mt-4'>
+                                <p>Already have an account? </p> 
+                                <Link to='/' className='text-blue-600 font-semibold ml-1 hover:underline'>
+                                    Login
+                                </Link>
+                            </div>
+                        </form>
+                    )}
+                </Formik>
+            </div>
         </div>
     )
 }

@@ -1,8 +1,11 @@
-import React from 'react'
+import react from 'react';
+import Calendar from 'react-calendar';
 import Header from '../component/Header'
 import { Link } from 'react-router-dom'
 
 const AdminPage = () => {
+
+  
   return (
     <div>
       <Header />
@@ -14,8 +17,8 @@ const AdminPage = () => {
         </div>
         <div className="p-4 bg-white shadow rounded-lg">
           <Link to={'/bills'}>
-          <h3 className="text-xl font-semibold">New Bill</h3>
-          <p className="text-2xl">50</p>
+            <h3 className="text-xl font-semibold">New Bill</h3>
+            <p className="text-2xl">50</p>
           </Link>
         </div>
         <div className="p-4 bg-white shadow rounded-lg">
