@@ -31,7 +31,7 @@ const AddCustomer = () => {
 
                     localStorage.setItem("AddCustomer", JSON.stringify(customers));
 
-                    navigate("/contect");
+                    navigate("contect");
                     setSubmitting(false);
                 }}
             >

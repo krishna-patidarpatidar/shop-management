@@ -1,7 +1,6 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import AdminPage from './AdminPage';
 import { useNavigate } from 'react-router-dom';
 
 const CustomerValidationSchema = yup.object().shape({
@@ -15,7 +14,6 @@ const AddCustomer = () => {
 
     return (
         <div>
-            <AdminPage />
             <h2>Add Customer</h2>
             <Formik
                 initialValues={{ name: '', number: '', address: '' }}
@@ -31,7 +29,7 @@ const AddCustomer = () => {
 
                     localStorage.setItem("AddCustomer", JSON.stringify(customers));
 
-                    navigate("/contect");
+                    navigate("/admin/contact");
                     setSubmitting(false);
                 }}
             >

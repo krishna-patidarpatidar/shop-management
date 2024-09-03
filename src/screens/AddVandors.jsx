@@ -1,7 +1,6 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import AdminPage from './AdminPage';
 import { useNavigate } from 'react-router-dom';
 
 const VandorsValidationSchema = yup.object().shape({
@@ -15,14 +14,13 @@ const AddVandors = () => {
 
     return (
         <div>
-            <AdminPage />
             <h2>Add Vandors</h2>
             <Formik
                 initialValues={{ name: '', number: '', address: '' }}
                 validationSchema={VandorsValidationSchema}
                 onSubmit={(values, { setSubmitting }) => {
                     let Vandors = JSON.parse(localStorage.getItem("AddVandors")) || [];
-                  
+
                     if (!Array.isArray(Vandors)) {
                         Vandors = [];
                     }
@@ -31,7 +29,7 @@ const AddVandors = () => {
 
                     localStorage.setItem("AddVandors", JSON.stringify(Vandors));
 
-                    navigate("/vandors");
+                    navigate("/admin/vandors");
                     setSubmitting(false);
                 }}
             >
