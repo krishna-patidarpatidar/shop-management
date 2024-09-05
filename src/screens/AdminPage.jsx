@@ -1,31 +1,21 @@
 import react from 'react';
 import Header from '../component/Header'
 import SideBar from '../component/SideBar'
-import { Link, Outlet } from 'react-router-dom'
-
+import { Outlet } from 'react-router-dom'
 const AdminPage = () => {
-
-
   return (
-    <div>
-
-      <div className='flex'>
-        <div className=''>
+    <div className=''>
+      <div className='md:w-full'>
+        <Header />
+      </div>
+      <div className='md:flex '>
+        <div>
           <SideBar />
         </div>
-        <div className='flex flex-col flex-1 '>
-          <Header />
-          <main>
-            <Outlet />
-          </main>
-
-        </div>
+        <main className='flex-1 '>
+          <Outlet />
+        </main>
       </div>
-
-
-
-
-
     </div>
   )
 }

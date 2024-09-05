@@ -21,7 +21,7 @@ const initialValues = {
 const AddBill = () => {
 
     return (
-        <div className="min-h-screen bg-gray-100 text-gray-700 py-6 flex flex-col justify-center sm:py-12">
+        <div className="min-h-screen bg-gray-100 text-gray-700 flex flex-col justify-center sm:py-12">
             <div className="relative py-3 sm:max-w-4xl sm:mx-auto w-full">
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
                 <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
@@ -34,6 +34,9 @@ const AddBill = () => {
                                 <div>
                                     <h1 className='flex gap-2 text-4xl font-semibold place-items-end'>
                                         Maa Bhavani <p className='text-lg font-medium'>sare center.</p>
+                                    </h1>
+                                    <h1>
+                                        mo. 8251012924 , add:-neem chouk dasai
                                     </h1>
                                 </div>
                             </div>
@@ -175,9 +178,16 @@ const AddBill = () => {
                                                     ))}
                                                 </tbody>
                                             </table>
-                                            <button type="button" className="px-4 py-2 bg-yellow-500 text-white rounded-md shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500" onClick={() => push({ product: '', quantity: 0, price: 0, total: 0 })}>
-                                                Add Product
-                                            </button>
+                                            <div className='flex justify-between px-3'>
+                                                <button type="button" className="px-4 py-2 bg-yellow-500 text-white rounded-md shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500" onClick={() => push({ product: '', quantity: 0, price: 0, total: 0 })}>
+                                                    Add Product
+                                                </button>
+                                                <div className='gap-3 text-lg font-semibold flex items-center'>
+                                                    <label htmlFor="">notify Us</label>
+                                                    <input className='border' type="date" placeholder='due amount date' />
+
+                                                </div>
+                                            </div>
                                         </div>
                                     )}
                                 </FieldArray>

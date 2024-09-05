@@ -49,9 +49,6 @@ const ShowBill = () => {
                                 <th scope="col" className="px-6 py-3">Qty</th>
                                 <th scope="col" className="px-6 py-3">Price</th>
                                 <th scope="col" className="px-6 py-3">Total</th>
-                                <th scope="col" className="px-6 py-3">Received</th>
-                                <th scope="col" className="px-6 py-3">Due</th>
-                                <th scope="col" className="px-6 py-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,14 +59,7 @@ const ShowBill = () => {
                                 <td className="px-6 py-4">1</td>
                                 <td className="px-6 py-4">120000</td>
                                 <td className="px-6 py-4">120000</td>
-                                <td className="px-6 py-4">100000</td>
-                                <td className="px-6 py-4">20000</td>
-                                <td className="px-6 py-4">
-                                    <div className="flex items-center">
-                                        <a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
-                                        <a href="#" className="font-medium text-red-600 hover:underline ml-3">Remove</a>
-                                    </div>
-                                </td>
+
                             </tr>
                             <tr>
                                 <td className="p-4">1</td>
@@ -77,14 +67,7 @@ const ShowBill = () => {
                                 <td className="px-6 py-4">1</td>
                                 <td className="px-6 py-4">120000</td>
                                 <td className="px-6 py-4">120000</td>
-                                <td className="px-6 py-4">100000</td>
-                                <td className="px-6 py-4">20000</td>
-                                <td className="px-6 py-4">
-                                    <div className="flex items-center">
-                                        <a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
-                                        <a href="#" className="font-medium text-red-600 hover:underline ml-3">Remove</a>
-                                    </div>
-                                </td>
+
                             </tr>
                             <tr>
                                 <td className="p-4">1</td>
@@ -92,36 +75,47 @@ const ShowBill = () => {
                                 <td className="px-6 py-4">1</td>
                                 <td className="px-6 py-4">120000</td>
                                 <td className="px-6 py-4">120000</td>
-                                <td className="px-6 py-4">100000</td>
-                                <td className="px-6 py-4">20000</td>
-                                <td className="px-6 py-4">
-                                    <div className="flex items-center">
-                                        <a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
-                                        <a href="#" className="font-medium text-red-600 hover:underline ml-3">Remove</a>
-                                    </div>
-                                </td>
+
                             </tr>
-                            <tr>
+                            <tr className='border-b-2'>
                                 <td className="p-4">1</td>
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 text-left">iPad Pro</th>
                                 <td className="px-6 py-4">1</td>
                                 <td className="px-6 py-4">120000</td>
                                 <td className="px-6 py-4">120000</td>
-                                <td className="px-6 py-4">100000</td>
-                                <td className="px-6 py-4">20000</td>
-                                <td className="px-6 py-4">
-                                    <div className="flex items-center">
-                                        <a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
-                                        <a href="#" className="font-medium text-red-600 hover:underline ml-3">Remove</a>
-                                    </div>
-                                </td>
+
                             </tr>
-                            {/* Add more rows as needed */}
+                            <tr>
+                                <td colSpan={2} className="p-4 text-center ">sub total</td>
+                                <td colSpan={2} className="px-6 py-4">4</td>
+                                <td className="px-6 py-4">120000</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <table className="w-full text-sm text-left">
+                        <thead className="text-xs text-gray-900 uppercase  dark:text-gray-950">
+                            <tr>
+                                <th>totalAmount</th>
+                                <th>Receved Amount</th>
+                                <th>Due Amount</th>
+                                <th>Pay in date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>100000</td>
+                                <td>10000</td>
+                                <td>90000</td>
+                                <th>10/10/2024</th>
+
+                            </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div className="flex flex-col md:flex-row justify-between p-6">
+                {/* <div className="flex flex-col md:flex-row justify-between p-6">
                     <div className="mb-4 md:mb-0">
                         <h1 className="text-[20px] text-green-900">Payment Method</h1>
                         <h1>Bank Name: XYZ</h1>
@@ -132,7 +126,7 @@ const ShowBill = () => {
                         <h1>Tax:  50000</h1>
                         <h1>Total:  1550000</h1>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="flex flex-col md:flex-row justify-between pb-1 px-5">
                     <div className="mb-4 md:mb-0">

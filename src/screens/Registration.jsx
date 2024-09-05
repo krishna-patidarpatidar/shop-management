@@ -27,7 +27,7 @@ const Registration = () => {
                     {({ values, errors, handleBlur, handleChange, handleSubmit, touched, isSubmitting }) => (
                         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                             <h1 className='text-3xl font-bold text-center text-blue-600 mb-6'>Create a new account</h1>
-                            
+
                             <div className='flex flex-col'>
                                 <label htmlFor="name" className='text-lg'>Name</label>
                                 <input
@@ -39,7 +39,7 @@ const Registration = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {touched.name && errors.name && <span className='text-red-600 text-sm mt-1'>{errors.name}</span>}
+                                {touched.name && errors.name && <span className='text-red-600 text-sm mt-[70px] absolute'>{errors.name}</span>}
                             </div>
 
                             <div className='flex flex-col'>
@@ -53,7 +53,7 @@ const Registration = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {touched.email && errors.email && <span className='text-red-600 text-sm mt-1'>{errors.email}</span>}
+                                {touched.email && errors.email && <span className='text-red-600 text-sm mt-[70px] absolute'>{errors.email}</span>}
                             </div>
 
                             <div className='flex flex-col'>
@@ -67,7 +67,7 @@ const Registration = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {touched.number && errors.number && <span className='text-red-600 text-sm mt-1'>{errors.number}</span>}
+                                {touched.number && errors.number && <span className='text-red-600 text-sm mt-[70px] absolute'>{errors.number}</span>}
                             </div>
 
                             <div className='flex flex-col'>
@@ -81,7 +81,7 @@ const Registration = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {touched.password && errors.password && <span className='text-red-600 text-sm mt-1'>{errors.password}</span>}
+                                {touched.password && errors.password && <span className='text-red-600 text-sm mt-[70px] absolute'>{errors.password}</span>}
                             </div>
 
                             <div className='flex flex-col'>
@@ -95,7 +95,7 @@ const Registration = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {touched.confirmPassword && errors.confirmPassword && <span className='text-red-600 text-sm mt-1'>{errors.confirmPassword}</span>}
+                                {touched.confirmPassword && errors.confirmPassword && <span className='text-red-600 text-sm mt-[70px] absolute'>{errors.confirmPassword}</span>}
                             </div>
 
                             <button
@@ -107,7 +107,7 @@ const Registration = () => {
                             </button>
 
                             <div className='flex justify-center mt-4'>
-                                <p>Already have an account? </p> 
+                                <p>Already have an account? </p>
                                 <Link to='/' className='text-blue-600 font-semibold ml-1 hover:underline'>
                                     Login
                                 </Link>

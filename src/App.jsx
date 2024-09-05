@@ -11,7 +11,6 @@ const App = () => {
     <div>
       <RouterProvider router={Route} />
       <ToastContainer />
-
     </div>
   )
 }

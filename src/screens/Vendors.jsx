@@ -1,32 +1,32 @@
 import React, { useState } from 'react'
 import { Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
 
-const Vandors = () => {
-    const [vandors, setVandors] = useState(JSON.parse(localStorage.getItem("AddVandors")) || []);
+const Vendors = () => {
+    const [vendors, setVendors] = useState(JSON.parse(localStorage.getItem("AddVendors")) || []);
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(vandors)
+    console.log(vendors)
     const handleDelete = (index) => {
-        const updatedVandors = vandors.filter((_, i) => i !== index);
-        setVandors(updatedVandors);
-        localStorage.setItem("AddVandors", JSON.stringify(updatedVandors));
+        const updatedVendors = vendors.filter((_, i) => i !== index);
+        setVendors(updatedVendors);
+        localStorage.setItem("AddVendors", JSON.stringify(updatedVendors));
     };
 
     const handleEdit = (index) => {
-        const vandorToEdit = vandors[index];
-        navigate('add-vandors', { state: { vandor: vandorToEdit, index } });
+        const vendorToEdit = vendors[index];
+        navigate('add-vendors', { state: { vendor: vendorToEdit, index } });
     };
     return (
         <div>
-            {location.pathname !== '/admin/vandors' ? (
+            {location.pathname !== '/admin/vendors' ? (
                 <Outlet />
             ) : (
                 <div className="p-4">
                     <h1>Vendor List</h1>
                     <div className="flex justify-between">
-                        <h2 className="text-xl font-bold">Vandors</h2>
+                        <h2 className="text-xl font-bold">Vendors</h2>
                         <button className="px-4 py-2 text-white bg-green-500 rounded-lg">
-                            <Link to={'add-vandors'}>Add Vendor</Link>
+                            <Link to={'add-vendors'}>Add Vendor</Link>
                         </button>
                     </div>
                     <table className="w-full mt-4 bg-white shadow">
@@ -40,11 +40,11 @@ const Vandors = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {vandors.length > 0 ? vandors?.map((vandor, index) => (
+                            {vendors.length > 0 ? vendors?.map((vendor, index) => (
                                 <tr key={index}>
-                                    <td className="p-2">{vandor.name}</td>
-                                    <td className="p-2">{vandor.number}</td>
-                                    <td className="p-2">{vandor.address}</td>
+                                    <td className="p-2">{vendor.name}</td>
+                                    <td className="p-2">{vendor.number}</td>
+                                    <td className="p-2">{vendor.address}</td>
                                     <td className="p-2">
                                         <button onClick={() => handleEdit(index)} className="px-2 py-1 text-white bg-blue-500 rounded">
                                             Edit
@@ -59,7 +59,7 @@ const Vandors = () => {
                                 </tr>
                             )) : (
                                 <tr>
-                                    <td colSpan="4" className="p-2 text-center">No vandors found.</td>
+                                    <td colSpan="4" className="p-2 text-center">No vendors found.</td>
                                 </tr>
                             )}
                         </tbody>
@@ -74,4 +74,4 @@ const Vandors = () => {
     )
 }
 
-export default Vandors
+export default Vendors

@@ -3,40 +3,40 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-const VandorsValidationSchema = yup.object().shape({
+const VendorsValidationSchema = yup.object().shape({
     name: yup.string().min(5).required(),
     number: yup.string().length(10, "Number must be exactly 10 digits").required(),
     address: yup.string().required()
 });
 
-const AddVandors = () => {
+const AddVendors = () => {
     const navigate = useNavigate();
 
     return (
         <div>
-            <h2>Add Vandors</h2>
+            <h2>Add Vendors</h2>
             <Formik
                 initialValues={{ name: '', number: '', address: '' }}
-                validationSchema={VandorsValidationSchema}
+                validationSchema={VendorsValidationSchema}
                 onSubmit={(values, { setSubmitting }) => {
-                    let Vandors = JSON.parse(localStorage.getItem("AddVandors")) || [];
+                    let Vendors = JSON.parse(localStorage.getItem("AddVendors")) || [];
 
-                    if (!Array.isArray(Vandors)) {
-                        Vandors = [];
+                    if (!Array.isArray(Vendors)) {
+                        Vendors = [];
                     }
 
-                    Vandors.push(values);
+                    Vendors.push(values);
 
-                    localStorage.setItem("AddVandors", JSON.stringify(Vandors));
+                    localStorage.setItem("AddVendors", JSON.stringify(Vendors));
 
-                    navigate("/admin/vandors");
+                    navigate("/admin/vendors");
                     setSubmitting(false);
                 }}
             >
                 {({ values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting }) => (
                     <Form onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="name">Vandors Name</label>
+                            <label htmlFor="name">Vendors Name</label>
                             <input
                                 className='border'
                                 name='name'
@@ -44,13 +44,13 @@ const AddVandors = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 type="text"
-                                placeholder='Enter Vandors name'
+                                placeholder='Enter Vendors name'
                             />
                             {touched.name && <span className='text-red-600'>{errors.name}</span>}
                         </div>
 
                         <div>
-                            <label htmlFor="number">Vandors Mobile Number</label>
+                            <label htmlFor="number">Vendors Mobile Number</label>
                             <input
                                 className='border'
                                 name='number'
@@ -58,13 +58,13 @@ const AddVandors = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 type="text"
-                                placeholder='Enter Vandors number'
+                                placeholder='Enter Vendors number'
                             />
                             {touched.number && <span className='text-red-600'>{errors.number}</span>}
                         </div>
 
                         <div>
-                            <label htmlFor="address">Vandors Address</label>
+                            <label htmlFor="address">Vendors Address</label>
                             <input
                                 className='border'
                                 name='address'
@@ -72,7 +72,7 @@ const AddVandors = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 type="text"
-                                placeholder='Enter Vandors address'
+                                placeholder='Enter Vendors address'
                             />
                             {touched.address && <span className='text-red-600'>{errors.address}</span>}
                         </div>
@@ -87,4 +87,4 @@ const AddVandors = () => {
     );
 };
 
-export default AddVandors;
+export default AddVendors;

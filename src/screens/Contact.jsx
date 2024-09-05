@@ -23,7 +23,7 @@ const Contect = () => {
         <Outlet />
       ) : (
 
-        <div className="p-4">
+        <div className="p-4 max-w-[70%] mx-auto">
           <h1>Customer List</h1>
           <div className="flex justify-between">
             <h2 className="text-xl font-bold">Customers</h2>
@@ -31,22 +31,22 @@ const Contect = () => {
               <Link to={'add-contact'}>Add Customer</Link>
             </button>
           </div>
-          <table className="w-full mt-4 bg-white shadow">
-            <thead className="bg-gray-200">
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th className="p-2 text-left">Name</th>
-                <th className="p-2 text-left">Number</th>
-                <th className="p-2 text-left">Address</th>
-                <th className="p-2 text-left">Actions</th>
+                <th scope="col" class="px-6 py-3">Name</th>
+                <th scope="col" class="px-6 py-3">Number</th>
+                <th scope="col" class="px-6 py-3">Address</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {customers.length > 0 ? customers.map((customer, index) => (
-                <tr key={index}>
-                  <td className="p-2">{customer.name}</td>
-                  <td className="p-2">{customer.number}</td>
-                  <td className="p-2">{customer.address}</td>
-                  <td className="p-2">
+                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                       <td class="px-6 py-4">{customer.name}</td>
+                       <td class="px-6 py-4">{customer.number}</td>
+                       <td class="px-6 py-4">{customer.address}</td>
+                       <td class="px-6 py-4">
                     <button onClick={() => handleEdit(index)} className="px-2 py-1 text-white bg-blue-500 rounded">
                       Edit
                     </button>

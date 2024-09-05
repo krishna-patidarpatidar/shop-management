@@ -5,10 +5,10 @@ import WithoutLogin from '../component/WithoutLogin.jsx';
 import AdminPage from '../screens/AdminPage.jsx';
 import Contact from '../screens/Contact.jsx';
 import Registration from '../screens/Registration.jsx';
-import Vandors from '../screens/Vandors.jsx';
+import Vendors from '../screens/Vendors.jsx';
 import Billing from '../screens/Billing.jsx';
 import AddCustomer from '../screens/AddCustomer.jsx';
-import AddVandors from '../screens/AddVandors.jsx';
+import AddVendors from '../screens/AddVendors.jsx';
 import ShowTransaction from '../screens/ShowTransaction.jsx';
 import AddTransaction from '../screens/AddTransaction.jsx';
 import AddBill from '../screens/AddBill.jsx';
@@ -77,12 +77,12 @@ const router = createBrowserRouter([
             },
 
             {
-                path: 'vandors',
-                element: <Vandors />,
+                path: 'vendors',
+                element: <Vendors />,
                children: [
                     {
-                        path: 'add-vandors',
-                        element: <AddVandors />,
+                        path: 'add-vendors',
+                        element: <AddVendors />,
                     },
                     {
                         path: 'show-transaction',
