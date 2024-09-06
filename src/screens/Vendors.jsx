@@ -21,8 +21,7 @@ const Vendors = () => {
             {location.pathname !== '/admin/vendors' ? (
                 <Outlet />
             ) : (
-                <div className="p-4">
-                    <h1>Vendor List</h1>
+                <div className="p-4 max-w-[70%] mx-auto text-4xl">
                     <div className="flex justify-between">
                         <h2 className="text-xl font-bold">Vendors</h2>
                         <button className="px-4 py-2 text-white bg-green-500 rounded-lg">
@@ -41,7 +40,7 @@ const Vendors = () => {
                         </thead>
                         <tbody>
                             {vendors.length > 0 ? vendors?.map((vendor, index) => (
-                                <tr key={index}>
+                                <tr key={index} className='border'>
                                     <td className="p-2">{vendor.name}</td>
                                     <td className="p-2">{vendor.number}</td>
                                     <td className="p-2">{vendor.address}</td>

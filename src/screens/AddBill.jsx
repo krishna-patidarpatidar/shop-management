@@ -31,12 +31,12 @@ const AddBill = () => {
                                 <div className='max-w-[50px] '>
                                     <img className='' src="https://upload.wikimedia.org/wikipedia/commons/1/10/Goddess_Maheshwari_%28%E0%A4%A6%E0%A5%87%E0%A4%B5%E0%A5%80_%E0%A4%AE%E0%A4%B9%E0%A5%87%E0%A4%B6%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%80%29.png" alt="" />
                                 </div>
-                                <div>
+                                <div className='text-start'>
                                     <h1 className='flex gap-2 text-4xl font-semibold place-items-end'>
                                         Maa Bhavani <p className='text-lg font-medium'>sare center.</p>
                                     </h1>
-                                    <h1>
-                                        mo. 8251012924 , add:-neem chouk dasai
+                                    <h1 className='text-[10px]'>
+                                        mo. 8251012924 , add:-neem chouk dasai(dhar)
                                     </h1>
                                 </div>
                             </div>

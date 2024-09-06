@@ -10,19 +10,19 @@ const DeshBord = () => {
       <p className="text-2xl">$12,345</p>
     </div>
     <div className="p-4 bg-white shadow rounded-lg">
-      <Link to={'bills'}>
+      <Link to={'/admin/bills'}>
         <h3 className="text-xl font-semibold">New Bill</h3>
         <p className="text-2xl">50</p>
       </Link>
     </div>
     <div className="p-4 bg-white shadow rounded-lg">
-      <Link to={'contect'}>
+      <Link to={'/admin/contact'}>
         <h3 className="text-xl font-semibold">Customers</h3>
         <p className="text-2xl">1,200</p>
       </Link>
     </div>
     <div className="p-4 bg-white shadow rounded-lg">
-      <Link to={'vandors'}>
+      <Link to={'/admin/vendors'}>
         <h3 className="text-xl font-semibold">Vendors</h3>
         <p className="text-2xl">300</p>
       </Link>

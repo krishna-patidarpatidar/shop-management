@@ -4,10 +4,10 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 const Billing = () => {
     const location = useLocation();
     const [invoices, setInvoices] = useState([
-        { id: 1, number: 'INV001',date:'01/01/2024', customer: 'Customer 1', amount: '$100', status: 'Paid' },
-        { id: 2, number: 'INV002',date:'02/01/2024', customer: 'Customer 2', amount: '$150', status: 'Unpaid' },
-        { id: 3, number: 'INV003',date:'03/01/2024', customer: 'Customer 3', amount: '$150', status: 'Unpaid' },
-        { id: 4, number: 'INV004',date:'04/01/2024', customer: 'Customer 4', amount: '$150', status: 'Unpaid' },
+        { id: 1, number: 'INV001',date:'01/01/2024', customer: 'Customer 1', amount: '100', status: 'Paid' },
+        { id: 2, number: 'INV002',date:'02/01/2024', customer: 'Customer 2', amount: '150', status: 'Unpaid' },
+        { id: 3, number: 'INV003',date:'03/01/2024', customer: 'Customer 3', amount: '150', status: 'Unpaid' },
+        { id: 4, number: 'INV004',date:'04/01/2024', customer: 'Customer 4', amount: '150', status: 'Unpaid' },
         // Add more invoices as needed
     ]);
 
@@ -24,20 +24,20 @@ const Billing = () => {
             {location.pathname !== '/admin/bills' ? (
                 <Outlet />
             ) : (
-                <div>
-                    <div className="flex justify-between">
+                <div className=' text-4xl'>
+                    <div className="flex text-4xl justify-between">
 
-                        <h2 className="text-xl font-bold">Invoices</h2>
+                        <h2 className="font-bold">Invoices</h2>
 
                         <button className="px-4 py-2 flex gap-2 text-white  rounded-lg">
-                            <input className='border' type="text" placeholder='search hear' />
-                            <Link className='bg-green-500' to={'add-bill'}>Create Invoice</Link>
+                            <input className='border p-2 text-stone-900' type="text" placeholder='search hear' />
+                            <Link className='bg-green-500  p-2 font-bold' to={'add-bill'}>Create Invoice</Link>
                         </button>
                     </div>
                     <table className="w-full mt-4 bg-white shadow">
                         <thead className="bg-gray-200">
                             <tr>
-                                <th className="p-2 text-left">Invoice #</th>
+                                <th className="p-2 text-left">Invoice </th>
                                 <th className="p-2 text-left">date</th>
                                 <th className="p-2 text-left">Customer</th>
                                 <th className="p-2 text-left">Amount</th>
@@ -48,7 +48,7 @@ const Billing = () => {
                         <tbody>
                             {invoices.length > 0 ? (
                                 invoices?.map((invoice) => (
-                                    <tr key={invoice.id}>
+                                    <tr key={invoice.id} className='border'>
                                         <td className="p-2">{invoice.number}</td>
                                         <td className="p-2">{invoice.date}</td>
                                         <td className="p-2">{invoice.customer}</td>

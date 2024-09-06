@@ -4,24 +4,24 @@ const ShowBill = () => {
     return (
         <div className="container mx-auto px-4 mt-3 text-blue-950 font-semibold">
             <div className="border max-w-full md:max-w-[960px] mx-auto p-4 rounded-lg shadow-lg">
-                <div className="flex flex-col md:flex-row justify-between border-b-[3px] py-4">
-                    <div className="flex items-center">
-                        <div className="w-[50px]">
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/1/10/Goddess_Maheshwari_%28%E0%A4%A6%E0%A5%87%E0%A4%B5%E0%A5%80_%E0%A4%AE%E0%A4%B9%E0%A5%87%E0%A4%B6%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%80%29.png"
-                                alt="Logo"
-                                className="w-full"
-                            />
+                <div className='flex justify-between border-b-[3px] pt-9 py-2'>
+                    <div className='flex items-center'>
+                        <div className='max-w-[50px] '>
+                            <img className='' src="https://upload.wikimedia.org/wikipedia/commons/1/10/Goddess_Maheshwari_%28%E0%A4%A6%E0%A5%87%E0%A4%B5%E0%A5%80_%E0%A4%AE%E0%A4%B9%E0%A5%87%E0%A4%B6%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%80%29.png" alt="" />
                         </div>
-                        <div className="ml-4">
-                            <h1 className="text-2xl md:text-4xl font-semibold">
-                                Maa Bhavani <span className="text-lg md:text-xl font-medium">Saree Center</span>
+                        <div className='text-start'>
+                            <h1 className='flex gap-2 text-4xl font-semibold place-items-end'>
+                                Maa Bhavani <p className='text-lg font-medium'>sare center.</p>
+                            </h1>
+                            <h1 className='text-[10px]'>
+                                mo. 8251012924 , add:-neem chouk dasai(dhar)
                             </h1>
                         </div>
                     </div>
-                    <div className="mt-4 md:mt-0">
-                        <h1 className="text-2xl md:text-4xl font-semibold">Invoice</h1>
+                    <div>
+                        <h1 className='flex gap-2 text-4xl font-semibold place-items-end'>Invoice</h1>
                     </div>
+
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-between mt-4">
@@ -98,7 +98,11 @@ const ShowBill = () => {
                         <thead className="text-xs text-gray-900 uppercase  dark:text-gray-950">
                             <tr>
                                 <th>totalAmount</th>
-                                <th>Receved Amount</th>
+                                <th colSpan={2}>Receved Amount
+                                    <p className='flex justify-around text-[10px]'>
+                                    <p>online</p> <p className=''>case</p>
+                                    </p>
+                                </th>
                                 <th>Due Amount</th>
                                 <th>Pay in date</th>
                             </tr>
@@ -107,6 +111,7 @@ const ShowBill = () => {
                             <tr>
                                 <td>100000</td>
                                 <td>10000</td>
+                                <td>2000</td>
                                 <td>90000</td>
                                 <th>10/10/2024</th>
 

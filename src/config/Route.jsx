@@ -15,6 +15,9 @@ import AddBill from '../screens/AddBill.jsx';
 import ShowBill from '../screens/ShowBill.jsx';
 import PamentIn from '../screens/PamentIn.jsx';
 import DeshBord from '../screens/DeshBord.jsx';
+import Products from '../screens/AddProducts.jsx';
+import AddProducts from '../screens/AddProducts.jsx';
+import ShowProducts from '../screens/ShowProducts.jsx';
 
 const router = createBrowserRouter([
     {
@@ -41,6 +44,14 @@ const router = createBrowserRouter([
             {
                 path: 'deshBord',
                 element: <DeshBord />,
+            },
+            {
+                path: 'add-product',
+                element: <AddProducts />,
+            },
+            {
+                path: 'show-products',
+                element: <ShowProducts/>,
             },
             {
                 path: 'bills',
