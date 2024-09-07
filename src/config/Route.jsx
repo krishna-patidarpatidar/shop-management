@@ -18,6 +18,8 @@ import DeshBord from '../screens/DeshBord.jsx';
 import Products from '../screens/AddProducts.jsx';
 import AddProducts from '../screens/AddProducts.jsx';
 import ShowProducts from '../screens/ShowProducts.jsx';
+import NameUpdate from '../screens/NameUpdate.jsx';
+import PasswordUpdate from '../screens/PasswordUpdate.jsx';
 
 const router = createBrowserRouter([
     {
@@ -104,6 +106,12 @@ const router = createBrowserRouter([
                         element: <AddTransaction />,
                     },
                 ]
+            },
+            {
+                path:'update-name',element: <NameUpdate/>
+            },
+            {
+                path:'update-password',element: <PasswordUpdate/>
             },
 
 

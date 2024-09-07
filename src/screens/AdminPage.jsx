@@ -1,23 +1,34 @@
-import react from 'react';
-import Header from '../component/Header'
-import SideBar from '../component/SideBar'
-import { Outlet } from 'react-router-dom'
+import React, { useState } from 'react';
+import Header from '../component/Header';
+import SideBar from '../component/SideBar';
+import { Outlet } from 'react-router-dom';
+
 const AdminPage = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isColseSidebar, setIsColseSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    setIsColseSidebar(!isColseSidebar)
+  };
+
   return (
-    <div className=''>
-      <div className='md:w-full'>
-        <Header />
-      </div>
-      <div className='md:flex '>
-        <div>
-          <SideBar />
-        </div>
-        <main className='flex-1 '>
+    <div className="flex flex-col min-h-screen">
+      {/* Header */}
+      <Header toggle={toggleSidebar} />
+
+      {/* Content Area */}
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <SideBar isSidebarOpen={{isSidebarOpen , isColseSidebar}} />
+
+        {/* Main Content */}
+        <main className="flex-1 p-4">
           <Outlet />
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminPage
+export default AdminPage;
