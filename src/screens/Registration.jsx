@@ -98,7 +98,7 @@ const Registration = () => {
                                 {touched.confirmPassword && errors.confirmPassword && <span className='text-red-600 text-sm mt-[70px] absolute'>{errors.confirmPassword}</span>}
                             </div>
 
-                           <Link  className='w-full bg-blue-500 text-white p-3 rounded-lg font-semibold mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400' to={'/admin'}>
+                           <Link  className='w-full bg-blue-500 text-center text-white p-3 rounded-lg font-semibold mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400' to={'/admin'}>
                            <button
                                 type="submit"
                                 disabled={isSubmitting}

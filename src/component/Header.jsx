@@ -3,7 +3,7 @@ import { IoNotifications } from "react-icons/io5";
 
 const Header = ({ toggle }) => {
   return (
-    <div className="flex justify-between bg-slate-400 p-4 items-center">
+    <div className="flex fixed z-50 left-0 right-0 top-0 justify-between bg-slate-400 p-4 items-center">
       {/* Logo */}
       <div className="lg:max-w-[110px]">
         <img
@@ -12,7 +12,7 @@ const Header = ({ toggle }) => {
           alt="Logo"
         />
         {/* Toggle button for mobile */}
-        <button className="text-white md:hidden" onClick={toggle}>
+        <button className="text-white  md:hidden" onClick={toggle}>
           ☰
         </button>
       </div>

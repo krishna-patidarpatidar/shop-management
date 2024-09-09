@@ -56,10 +56,10 @@ const Login = () => {
                                 )}
                             </div>
 
-                           <Link to={'/admin'}> <button
+                           <Link className="bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 text-center" to={'/admin'}> <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                               
                             >
                                 Login
                             </button></Link>
