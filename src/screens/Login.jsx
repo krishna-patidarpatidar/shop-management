@@ -11,7 +11,7 @@ const LoginSchema = yup.object().shape({
 const Login = () => {
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
+            <div className="max-w-[300px] text-sm md:max-w-md w-full bg-white p-4 md:p-8 rounded-lg shadow-md">
                 <Formik
                     initialValues={{ email: '', password: '' }}
                     validationSchema={LoginSchema}
@@ -36,7 +36,7 @@ const Login = () => {
                                     placeholder="Enter a valid email"
                                 />
                                 {touched.email && errors.email && (
-                                    <span className="text-red-600 text-sm mt-1">{errors.email}</span>
+                                    <span className="text-red-600 absolute mt-14 text-sm mt-1">{errors.email}</span>
                                 )}
                             </div>
 
@@ -52,7 +52,7 @@ const Login = () => {
                                     placeholder="Enter your password"
                                 />
                                 {touched.password && errors.password && (
-                                    <span className="text-red-600 text-sm mt-1">{errors.password}</span>
+                                    <span className="text-red-600 absolute mt-14 text-sm mt-1">{errors.password}</span>
                                 )}
                             </div>
 

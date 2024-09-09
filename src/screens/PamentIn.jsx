@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
-
+import React, { useState, useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import { WhatsappShareButton, WhatsappIcon } from 'react-share';
 const PamentIn = () => {
     const [receivedAmount, setReceivedAmount] = useState(0);
     const remainingAmount = 50000;
     const dueAmount = Math.max(remainingAmount - receivedAmount, 0);
 
-    return (
-        <div className="max-w-[500px] mx-auto p-4 bg-white shadow-lg rounded-lg">
+    const contentToPrint = useRef(null);
+    const handlePrint = useReactToPrint({
+        documentTitle: "Print This Document",
+        onBeforePrint: () => console.log("before printing..."),
+        onAfterPrint: () => console.log("after printing..."),
+        removeAfterPrint: true,
+    });
+    return (<>
+       <div className='text-right'>
+       <button
+            onClick={() => {
+                handlePrint(null, () => contentToPrint.current);
+            }}> PRINT</button>
+       </div>
+
+
+        <div ref={contentToPrint} className="max-w-[500px] mx-auto p-4 bg-white shadow-lg rounded-lg">
             <div className="flex justify-between border-b-4 border-gray-300 py-4">
                 <div className="flex items-center">
                     <div className="max-w-[50px]">
@@ -17,7 +33,9 @@ const PamentIn = () => {
                         <h5 className="text-lg md:text-xl font-medium">Saree Center</h5>
                     </div>
                 </div>
-                <div className="flex items-center">
+                <div className=" items-center">
+                    <WhatsappShareButton url='https://web.whatsapp.com/'><WhatsappIcon /></WhatsappShareButton>
+
                     <h1 className="text-2xl md:text-4xl font-bold">Invoice</h1>
                 </div>
             </div>
@@ -55,6 +73,7 @@ const PamentIn = () => {
                 </button>
             </div>
         </div>
+    </>
     );
 }
 

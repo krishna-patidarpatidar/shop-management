@@ -25,8 +25,8 @@ const Registration = () => {
                     }}
                 >
                     {({ values, errors, handleBlur, handleChange, handleSubmit, touched, isSubmitting }) => (
-                        <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-                            <h1 className='text-3xl font-bold text-center text-blue-600 mb-6'>Create a new account</h1>
+                        <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
+                            <h1 className=' text-xl md:text-3xl font-bold text-center text-blue-600 md:mb-6'>Create a new account</h1>
 
                             <div className='flex flex-col'>
                                 <label htmlFor="name" className='text-lg'>Name</label>

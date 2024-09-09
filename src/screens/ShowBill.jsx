@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 const ShowBill = () => {
+    const contentToPrint = useRef(null);
+    const handlePrint = useReactToPrint({
+        documentTitle: "Print This Document",
+        onBeforePrint: () => console.log("before printing..."),
+        onAfterPrint: () => console.log("after printing..."),
+        removeAfterPrint: true,
+    });
     return (
-        <div className="container mx-auto px-4 mt-3 text-blue-950 font-semibold">
-            <div className="border max-w-full md:max-w-[960px] mx-auto p-4 rounded-lg shadow-lg">
-                <div className='flex justify-between border-b-[3px] pt-9 py-2'>
+        <>
+        
+        <div className='text-right'>
+       <button
+            onClick={() => {
+                handlePrint(null, () => contentToPrint.current);
+            }}> PRINT</button>
+       </div>
+        
+        <div ref={contentToPrint} className="  mx-auto  mt-3 text-blue-950 font-semibold">
+            <div className="border ml-[-81px] md:w-[900px] rounded-lg w-[450px] p-4 shadow-lg">
+                <div className='flex justify-between border-b-[3px] md:pt-5 '>
                     <div className='flex items-center'>
-                        <div className='max-w-[50px] '>
-                            <img className='' src="https://upload.wikimedia.org/wikipedia/commons/1/10/Goddess_Maheshwari_%28%E0%A4%A6%E0%A5%87%E0%A4%B5%E0%A5%80_%E0%A4%AE%E0%A4%B9%E0%A5%87%E0%A4%B6%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%80%29.png" alt="" />
+                        <div className='w-[25px]  md:max-w-[50px] '>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Goddess_Maheshwari_%28%E0%A4%A6%E0%A5%87%E0%A4%B5%E0%A5%80_%E0%A4%AE%E0%A4%B9%E0%A5%87%E0%A4%B6%E0%A5%8D%E0%A4%B5%E0%A4%B0%E0%A5%80%29.png" alt="" />
                         </div>
                         <div className='text-start'>
-                            <h1 className='flex gap-2 text-4xl font-semibold place-items-end'>
-                                Maa Bhavani <p className='text-lg font-medium'>sare center.</p>
+                            <h1 className='flex gap-2 text- md:text-4xl font-semibold place-items-end'>
+                                Maa Bhavani <p className='text-[10px] md:text-lg font-medium'>sare center.</p>
                             </h1>
                             <h1 className='text-[10px]'>
                                 mo. 8251012924 , add:-neem chouk dasai(dhar)
@@ -19,18 +36,18 @@ const ShowBill = () => {
                         </div>
                     </div>
                     <div>
-                        <h1 className='flex gap-2 text-4xl font-semibold place-items-end'>Invoice</h1>
+                        <h1 className='flex gap-2 text-xl md:text-4xl font-semibold place-items-end'>Invoice</h1>
                     </div>
 
                 </div>
 
-                <div className="flex flex-col md:flex-row justify-between mt-4">
+                <div className="flex justify-between mt-4">
                     <div className="mb-4 md:mb-0">
                         <h1>INVOICE TO :</h1>
-                        <h1 className="text-xl">KRISHNA PATIDAR</h1>
-                        <h1 className="text-sm">Mo.No: 8251012624</h1>
+                        <h1 className="text-sm md:text-xl">KRISHNA PATIDAR</h1>
+                        <h1 className="text-[10px] md:text-sm">Mo.No: 8251012624</h1>
                     </div>
-                    <div className="text-center mb-4 md:mb-0">
+                    <div className="text-center ">
                         <p>Date: 11/11/2024</p>
                         <p>Invoice No: 32145695</p>
                     </div>
@@ -94,13 +111,13 @@ const ShowBill = () => {
 
                         </tbody>
                     </table>
-                    <table className="w-full text-sm text-left">
-                        <thead className="text-xs text-gray-900 uppercase  dark:text-gray-950">
+                    <table className="w-full text-sm text-center  ">
+                        <thead className="text-xs text-gray-900 uppercase border  dark:text-gray-950">
                             <tr>
                                 <th>totalAmount</th>
                                 <th colSpan={2}>Receved Amount
                                     <p className='flex justify-around text-[10px]'>
-                                    <p>online</p> <p className=''>case</p>
+                                        <p>online</p> <p className=''>case</p>
                                     </p>
                                 </th>
                                 <th>Due Amount</th>
@@ -110,10 +127,11 @@ const ShowBill = () => {
                         <tbody>
                             <tr>
                                 <td>100000</td>
+                                <td><p>1000</p></td>
+
+                                <td><p>2000</p></td>
                                 <td>10000</td>
-                                <td>2000</td>
-                                <td>90000</td>
-                                <th>10/10/2024</th>
+                                <td>11/11/2024</td>
 
                             </tr>
                         </tbody>
@@ -146,7 +164,9 @@ const ShowBill = () => {
                     </div>
                 </div>
             </div>
+
         </div>
+        </>
     );
 }
 

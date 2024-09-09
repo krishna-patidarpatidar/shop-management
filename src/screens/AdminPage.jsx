@@ -20,12 +20,14 @@ const AdminPage = () => {
       <Header toggle={toggleSidebar} />
 
       {/* Content Area */}
-      <div className="md:flex flex-1">
+      <div className="md:flex flex-1 ">
         {/* Sidebar */}
-        <SideBar isSidebarOpen={isSidebarOpen} closeSidebar={closeSidebar} />
+        <div className='fixed z-50 top-[156px] md:top-[148px]'>
+          <SideBar isSidebarOpen={isSidebarOpen} closeSidebar={closeSidebar} />
 
+        </div>
         {/* Main Content */}
-        <main className="flex-1 p-4 mt-32">
+        <main className="md:flex-1 p-4 mt-[140px] md:ml-[250px]">
           <Outlet />
         </main>
       </div>

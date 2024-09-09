@@ -18,7 +18,7 @@ const SideBar = ({ isSidebarOpen, closeSidebar }) => {
 
   return (
     <aside
-      className={`bg-gray-800 h-screen text-white w-48 md:w-64 space-y-6  px-2  mt-[122.5px] fixed z-50  inset-y-0 left-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full '} transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:w-64 text-2xl  md:text-4xl`}
+      className={`bg-gray-800 h-screen text-white w-48 md:w-64 space-y-6  px-2   inset-y-0 left-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full '} transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:w-64 text-2xl  md:text-4xl`}
     >
       <nav >
         <Link to={'deshBord'} onClick={closeSidebar}>
