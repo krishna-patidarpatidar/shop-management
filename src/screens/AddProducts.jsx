@@ -20,7 +20,7 @@ const initialValues = {
   dueAmount: 0
 };
 
-const AddBill = () => {
+const AddProducts = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-700 flex flex-col justify-center sm:py-12">
@@ -128,7 +128,6 @@ const AddBill = () => {
                             <th className="py-2 px-4 border border-gray-300 text-center">cost price</th>
                             <th className="py-2 px-4 border border-gray-300 text-center">selling price</th>
                             <th className="py-2 px-4 border border-gray-300 text-center"> Total cost</th>
-                            <th className="py-2 px-4 border border-gray-300 text-center"> Total selling</th>
                             <th className="py-2 px-4 border border-gray-300 text-center">Remove</th>
                           </tr>
                         </thead>
@@ -202,15 +201,7 @@ const AddBill = () => {
                                   className="px-2 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-100 w-full"
                                 />
                               </td>
-                              <td className="py-2 px-4 border border-gray-300 text-center">
-                                <input
-                                  name={`bills.${index}.total`}
-                                  type="number"
-                                  value={bill.totalSelling}
-                                  readOnly
-                                  className="px-2 py-1 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-gray-100 w-full"
-                                />
-                              </td>
+                             
                               <td className="py-2 px-4 border border-gray-300 text-center">
                                 <button type="button" className="text-red-600 hover:text-red-800 font-semibold" onClick={() => remove(index)}>Remove</button>
                               </td>
@@ -247,7 +238,7 @@ const AddBill = () => {
 
                   {/* Amount Received */}
                   <div className="flex flex-col">
-                    <label htmlFor="amountReceived" className="text-lg font-semibold">Amount Received online</label>
+                    <label htmlFor="amountReceived" className="text-lg font-semibold">Amount debit online</label>
                     <input
                       name="amountReceived"
                       type="text"
@@ -264,7 +255,7 @@ const AddBill = () => {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label htmlFor="amountReceived" className="text-lg font-semibold">Amount Received case</label>
+                    <label htmlFor="amountReceived" className="text-lg font-semibold">Amount debit case</label>
                     <input
                       name="amountReceived"
                       type="text"
@@ -305,4 +296,4 @@ const AddBill = () => {
   );
 };
 
-export default AddBill;
+export default AddProducts;

@@ -2,11 +2,10 @@ import { Link } from 'react-router-dom'
 import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 
-
 const DeshBord = () => {
   return (
 
-    <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 items-start lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 mt-28 p-4 md:grid-cols-2 items-start lg:grid-cols-4">
       <div className="p-4 bg-white shadow rounded-lg flex justify-between">
         <p>
           <h3 className="text-xl font-semibold">Total Sales</h3>
@@ -47,18 +46,16 @@ const DeshBord = () => {
           <p className="text-2xl">300</p>
         </Link>
       </div>
-      <div className='md:mt-[100px]'>
-        export default function BasicBars() {
+      <div className='md:ml-52 md:mt-16'>
           <BarChart
             xAxis={[{ scaleType: 'band', data: ['Day 1', 'Day 2', 'Day 3'] }]}
-            series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
-            width={500}
-            height={300}
+            series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 1] }]}
+            width={330}
+            height={200}
           />
-        }
 
       </div>
-      
+     
     </div>
   )
 }

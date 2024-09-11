@@ -1,14 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Formik } from 'formik'
-import * as yup from 'yup'
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import { useLoginMutation } from '../Redux/serviec';
+import Toast from '../config/Toast';
 
 const LoginSchema = yup.object().shape({
     email: yup.string().email('Invalid email address').required('Email is required'),
-    password: yup.string().required('Password is required').min(8, 'Password must be at least 8 characters')
-})
+    password: yup.string().required('Password is required').min(6, 'Password must be at least 8 characters')
+});
 
 const Login = () => {
+    const [login] = useLoginMutation();
+    const navigate = useNavigate(); // Use navigate for redirection
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             <div className="max-w-[300px] text-sm md:max-w-md w-full bg-white p-4 md:p-8 rounded-lg shadow-md">
@@ -16,8 +21,26 @@ const Login = () => {
                     initialValues={{ email: '', password: '' }}
                     validationSchema={LoginSchema}
                     onSubmit={(values, { setSubmitting }) => {
-                        alert("You are logged in")
-                        setSubmitting(false)
+                        login(values)
+                            .then((data) => {
+                                // Storing token or user data after login
+                                // localStorage.setItem('auth', data.data.token);
+                                if(data.data.status){
+                                    Toast.successMsg(data.data.msg);
+                                        navigate('/admin');
+
+                                }else{
+                                    Toast.errorMsg(data.data.msg);
+
+                                }
+
+                                // if(data.data.msg==="user login successfully"){
+                                // }// Navigate after successful login
+                            })
+                            .catch((error) => {
+                                console.log(error)
+                            })
+                            .finally(() => setSubmitting(false)); // Ensure the form submission ends
                     }}
                 >
                     {({ values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting }) => (
@@ -36,7 +59,7 @@ const Login = () => {
                                     placeholder="Enter a valid email"
                                 />
                                 {touched.email && errors.email && (
-                                    <span className="text-red-600 absolute mt-14 text-sm mt-1">{errors.email}</span>
+                                    <span className="text-red-600 text-sm mt-1">{errors.email}</span>
                                 )}
                             </div>
 
@@ -52,17 +75,17 @@ const Login = () => {
                                     placeholder="Enter your password"
                                 />
                                 {touched.password && errors.password && (
-                                    <span className="text-red-600 absolute mt-14 text-sm mt-1">{errors.password}</span>
+                                    <span className="text-red-600 text-sm mt-1">{errors.password}</span>
                                 )}
                             </div>
 
-                           <Link className="bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 text-center" to={'/admin'}> <button
+                            <button
                                 type="submit"
                                 disabled={isSubmitting}
-                               
+                                className="bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
                             >
                                 Login
-                            </button></Link>
+                            </button>
 
                             <Link className="text-center text-blue-500 text-sm mt-4 hover:underline" to="/register">
                                 Create a new account
@@ -72,7 +95,7 @@ const Login = () => {
                 </Formik>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;

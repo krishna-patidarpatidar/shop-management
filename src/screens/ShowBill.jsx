@@ -12,15 +12,15 @@ const ShowBill = () => {
     return (
         <>
         
-        <div className='text-right'>
+        <div className='text-center'>
        <button
             onClick={() => {
                 handlePrint(null, () => contentToPrint.current);
             }}> PRINT</button>
        </div>
         
-        <div ref={contentToPrint} className="  mx-auto  mt-3 text-blue-950 font-semibold">
-            <div className="border ml-[-81px] md:w-[900px] rounded-lg w-[450px] p-4 shadow-lg">
+        <div ref={contentToPrint} className="flex items-center mt-3 text-blue-950 font-semibold">
+            <div className="border bg-red-500   md:w-[900px] rounded-lg mx-auto w-[450px] p-4 shadow-lg">
                 <div className='flex justify-between border-b-[3px] md:pt-5 '>
                     <div className='flex items-center'>
                         <div className='w-[25px]  md:max-w-[50px] '>

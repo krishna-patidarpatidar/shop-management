@@ -19,7 +19,7 @@ const Billing = () => {
     };
 
     return (
-        <div className="p-4 max-w-[70%] mx-auto">
+        <div className=" max-w-[70%] mt-40 mx-auto">
             {/* Conditionally render either the Outlet or the Invoice list */}
             {location.pathname !== '/admin/bills' ? (
                 <Outlet />
