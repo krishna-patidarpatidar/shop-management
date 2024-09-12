@@ -2,7 +2,7 @@ import React from 'react'
 
 const ShowTransaction = () => {
     return (
-        <div className='max-w-[85%] mx-auto text-4xl mt-4'>
+        <div className='max-w-[85%] mt-[200px] mx-auto text-4xl'>
             <div className='flex justify-between py-3  font-semibold'>
                 <h1 >ShowTransaction</h1>
             </div>

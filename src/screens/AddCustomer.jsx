@@ -2,32 +2,32 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useCustomerMutation } from '../Redux/serviec';
 
 const CustomerValidationSchema = yup.object().shape({
     name: yup.string().min(5).required(),
-    number: yup.string().length(10, "Number must be exactly 10 digits").required(),
+    mobile: yup.string().length(10, "mobile must be exactly 10 digits").required(),
     address: yup.string().required()
 });
 
 const AddCustomer = () => {
     const navigate = useNavigate();
-
+    const [customer] = useCustomerMutation()
     return (
-        <div>
+        <div className='mt-[200px]'>
             <h2>Add Customer</h2>
             <Formik
-                initialValues={{ name: '', number: '', address: '' }}
+                initialValues={{ name: '', mobile: '', address: '' }}
                 validationSchema={CustomerValidationSchema}
                 onSubmit={(values, { setSubmitting }) => {
-                    let customers = JSON.parse(localStorage.getItem("AddCustomer")) || [];
 
-                    if (!Array.isArray(customers)) {
-                        customers = [];
-                    }
+                    let customersToken = localStorage.getItem("auth")
+                    console.log(values)
+                    customer({ customerData: values, token: customersToken })
+                        .then((res) => {
+                            console.log(res)
+                        })
 
-                    customers.push(values);
-
-                    localStorage.setItem("AddCustomer", JSON.stringify(customers));
 
                     navigate("/admin/contact");
                     setSubmitting(false);
@@ -53,14 +53,14 @@ const AddCustomer = () => {
                             <label htmlFor="number">Customer Mobile Number</label>
                             <input
                                 className='border'
-                                name='number'
-                                value={values.number}
+                                name='mobile'
+                                value={values.mobile}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 type="text"
                                 placeholder='Enter customer number'
                             />
-                            {touched.number && <span className='text-red-600'>{errors.number}</span>}
+                            {touched.mobile && <span className='text-red-600'>{errors.mobile}</span>}
                         </div>
 
                         <div>

@@ -23,8 +23,9 @@ const Login = () => {
                     onSubmit={(values, { setSubmitting }) => {
                         login(values)
                             .then((data) => {
+                                console.log(data)
                                 // Storing token or user data after login
-                                // localStorage.setItem('auth', data.data.token);
+                                localStorage.setItem('auth', data.data.token);
                                 if(data.data.status){
                                     Toast.successMsg(data.data.msg);
                                         navigate('/admin');

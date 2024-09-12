@@ -17,7 +17,7 @@ const Vendors = () => {
         navigate('add-vendors', { state: { vendor: vendorToEdit, index } });
     };
     return (
-        <div>
+        <div className='mt-[200px]'>
             {location.pathname !== '/admin/vendors' ? (
                 <Outlet />
             ) : (

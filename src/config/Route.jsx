@@ -15,11 +15,11 @@ import AddBill from '../screens/AddBill.jsx';
 import ShowBill from '../screens/ShowBill.jsx';
 import PamentIn from '../screens/PamentIn.jsx';
 import DeshBord from '../screens/DeshBord.jsx';
-import Products from '../screens/AddProducts.jsx';
 import AddProducts from '../screens/AddProducts.jsx';
 import ShowProducts from '../screens/ShowProducts.jsx';
 import NameUpdate from '../screens/NameUpdate.jsx';
 import PasswordUpdate from '../screens/PasswordUpdate.jsx';
+import Auth from '../component/Auth.jsx';
 
 const router = createBrowserRouter([
     {
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
 
     {
         path: '/admin',
-        element: <AdminPage />,
+        element:<Auth><AdminPage /></Auth> ,
         children: [
             {
                 path: 'deshBord',
