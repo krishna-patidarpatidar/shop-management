@@ -5,19 +5,18 @@ const initialValues = {
     invoiceDate: '',
     customer: {
         name: '',
+        address:'',
         mobile: ''
     },
-    bills: [{
-        product: '',
-        quantity: 0,
-        price: 0,
-        total: 0
+    products: [{
+        name: '',
+        quantity: '',
+        price: '',
+        
     }],
-    totalAmount: 0,
     onlineReceived: 0,
     cashReceived: 0,
-    discount: 0,     // Discount in percentage
-    dueAmount: 0
+    discount: 0   // Discount in percentage
 };
 
 const AddBill = () => {
@@ -29,41 +28,25 @@ const AddBill = () => {
                 <Formik
                     initialValues={initialValues}
                     onSubmit={(values) => {
+                        console.log(values)
                         // Total amount before discount
-                        const totalAmount = values.bills.reduce((sum, bill) => sum + bill.total, 0);
+                        // const totalAmount = values.products.reduce((sum, bill) => sum + bill.total, 0);
 
-                        // Discounted total amount
-                        const discountAmount = totalAmount * (values.discount / 100);
-                        const discountedTotal = totalAmount - discountAmount;
+                        // // Discounted total amount
+                        // const discountAmount = totalAmount * (values.discount / 100);
+                        // const discountedTotal = totalAmount - discountAmount;
 
-                        // Total received
-                        const totalReceivedAmount = parseFloat(values.onlineReceived) + parseFloat(values.cashReceived);
+                        // // Total received
+                        // const totalReceivedAmount = parseFloat(values.onlineReceived) + parseFloat(values.cashReceived);
 
-                        // Due amount after discount
-                        const dueAmount = Math.max(discountedTotal - totalReceivedAmount, 0);
+                        // // Due amount after discount
+                        // const dueAmount = Math.max(discountedTotal - totalReceivedAmount, 0);
 
-                        alert(JSON.stringify({ ...values, totalAmount, discountAmount, discountedTotal, totalReceivedAmount, dueAmount }, null, 2));
+                        // alert(JSON.stringify({ ...values, totalAmount, discountAmount, discountedTotal, totalReceivedAmount, dueAmount }, null, 2));
                     }}
                 >
-                    {({ values, setFieldValue, handleChange }) => (
-                        <form onSubmit={event => {
-                            event.preventDefault();
-
-                            // Total amount before discount
-                            const totalAmount = values.bills.reduce((sum, bill) => sum + bill.total, 0);
-
-                            // Discounted total amount
-                            const discountAmount = totalAmount * (values.discount / 100);
-                            const discountedTotal = totalAmount - discountAmount;
-
-                            // Total received
-                            const totalReceivedAmount = parseFloat(values.onlineReceived) + parseFloat(values.cashReceived);
-
-                            // Due amount after discount
-                            const dueAmount = Math.max(discountedTotal - totalReceivedAmount, 0);
-
-                            alert(JSON.stringify({ ...values, totalAmount, discountAmount, discountedTotal, totalReceivedAmount, dueAmount }, null, 2));
-                        }}>
+                    {({ values,handleSubmit, setFieldValue, handleChange }) => (
+                        <form onSubmit={handleSubmit}>
                             <div className="mb-4">
                                 <label className="block text-lg font-semibold">Invoice Date</label>
                                 <input
@@ -89,6 +72,18 @@ const AddBill = () => {
                                     />
                                 </div>
                                 <div>
+                                    <label className="block text-lg font-semibold">Customer address</label>
+                                    <input
+                                        name="customer.address"
+                                        type="text"
+                                        value={values.customer.address}
+                                        onChange={handleChange}
+                                        placeholder="Customer Mobile"
+                                        className="w-full px-3 py-2 border rounded-md"
+                                    />
+                                </div>
+                                <div>
+                                    
                                     <label className="block text-lg font-semibold">Customer Mobile</label>
                                     <input
                                         name="customer.mobile"
@@ -102,7 +97,7 @@ const AddBill = () => {
                             </div>
 
                             {/* Product Details */}
-                            <FieldArray name="bills">
+                            <FieldArray name="products">
                                 {({ remove, push }) => (
                                     <div className="mb-4">
                                         <table className="w-full table-auto border-collapse bg-white">
@@ -116,11 +111,11 @@ const AddBill = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {values.bills.map((bill, index) => (
+                                                {values.products.map((bill, index) => (
                                                     <tr key={index}>
                                                         <td className="border p-2">
                                                             <input
-                                                                name={`bills.${index}.product`}
+                                                                name={`products.${index}.product`}
                                                                 type="text"
                                                                 value={bill.product}
                                                                 onChange={handleChange}
@@ -130,35 +125,35 @@ const AddBill = () => {
                                                         </td>
                                                         <td className="border p-2">
                                                             <input
-                                                                name={`bills.${index}.quantity`}
+                                                                name={`products.${index}.quantity`}
                                                                 type="number"
                                                                 value={bill.quantity}
                                                                 onChange={(e) => {
                                                                     const quantity = parseFloat(e.target.value || 0);
                                                                     const price = parseFloat(bill.price || 0);
-                                                                    setFieldValue(`bills.${index}.quantity`, quantity);
-                                                                    setFieldValue(`bills.${index}.total`, quantity * price);
+                                                                    setFieldValue(`products.${index}.quantity`, quantity);
+                                                                    setFieldValue(`products.${index}.total`, quantity * price);
                                                                 }}
                                                                 className="w-full px-2 py-1 border rounded-md"
                                                             />
                                                         </td>
                                                         <td className="border p-2">
                                                             <input
-                                                                name={`bills.${index}.price`}
+                                                                name={`products.${index}.price`}
                                                                 type="number"
                                                                 value={bill.price}
                                                                 onChange={(e) => {
                                                                     const price = parseFloat(e.target.value || 0);
                                                                     const quantity = parseFloat(bill.quantity || 0);
-                                                                    setFieldValue(`bills.${index}.price`, price);
-                                                                    setFieldValue(`bills.${index}.total`, quantity * price);
+                                                                    setFieldValue(`products.${index}.price`, price);
+                                                                    setFieldValue(`products.${index}.total`, quantity * price);
                                                                 }}
                                                                 className="w-full px-2 py-1 border rounded-md"
                                                             />
                                                         </td>
                                                         <td className="border p-2">
                                                             <input
-                                                                name={`bills.${index}.total`}
+                                                                name={`products.${index}.total`}
                                                                 type="number"
                                                                 value={bill.total}
                                                                 readOnly
@@ -223,7 +218,7 @@ const AddBill = () => {
                                     <label className="block text-lg font-semibold">Total Amount (Before Discount)</label>
                                     <input
                                         name="totalAmount"
-                                        value={values.bills.reduce((sum, bill) => sum + bill.total, 0)}
+                                        value={values.products.reduce((sum, bill) => sum + bill.total, 0)}
                                         readOnly
                                         className="w-full px-3 py-2 border rounded-md bg-gray-100"
                                     />
@@ -233,7 +228,7 @@ const AddBill = () => {
                                     <label className="block text-lg font-semibold">Discounted Total</label>
                                     <input
                                         name="discountedTotal"
-                                        value={values.bills.reduce((sum, bill) => sum + bill.total, 0) - (values.bills.reduce((sum, bill) => sum + bill.total, 0) * (values.discount / 100))}
+                                        value={values.products.reduce((sum, bill) => sum + bill.total, 0) - (values.products.reduce((sum, bill) => sum + bill.total, 0) * (values.discount / 100))}
                                         readOnly
                                         className="w-full px-3 py-2 border rounded-md bg-gray-100"
                                     />
@@ -243,7 +238,7 @@ const AddBill = () => {
                                     <label className="block text-lg font-semibold">Due Amount</label>
                                     <input
                                         name="dueAmount"
-                                        value={Math.max((values.bills.reduce((sum, bill) => sum + bill.total, 0) - (values.bills.reduce((sum, bill) => sum + bill.total, 0) * (values.discount / 100))) - (parseFloat(values.onlineReceived) + parseFloat(values.cashReceived)), 0)}
+                                        value={Math.max((values.products.reduce((sum, bill) => sum + bill.total, 0) - (values.products.reduce((sum, bill) => sum + bill.total, 0) * (values.discount / 100))) - (parseFloat(values.onlineReceived) + parseFloat(values.cashReceived)), 0)}
                                         readOnly
                                         className="w-full px-3 py-2 border rounded-md bg-gray-100"
                                     />

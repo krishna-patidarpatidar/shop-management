@@ -20,6 +20,7 @@ import ShowProducts from '../screens/ShowProducts.jsx';
 import NameUpdate from '../screens/NameUpdate.jsx';
 import PasswordUpdate from '../screens/PasswordUpdate.jsx';
 import Auth from '../component/Auth.jsx';
+import EditCustomer from '../screens/EditCustomer.jsx';
 
 const router = createBrowserRouter([
     {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
                     {
                         path: 'add-contact',
                         element: <AddCustomer />,
+                    },
+                    {
+                        path: 'edit-contact/:contectId',
+                        element: <EditCustomer />,
                     },
                     {
                         path: 'show-transaction',

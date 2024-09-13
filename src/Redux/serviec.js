@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 const shopApiSlice = createApi({
   reducerPath: "shopApi",
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_APP_BASE_URL }),
+  tagTypes: ['customer'],
   endpoints: (builder) => ({
     register: builder.mutation({
       query: (userData) => ({
@@ -19,27 +20,41 @@ const shopApiSlice = createApi({
         body: userData
       })
     }),
+    getCustomer: builder.query({
+      query: ({ token }) => ({
+        url: `/customer/getAllCustomer`,
+        method: "GET",
+        headers: { "x-access-token": token }
+      }),
+      providesTags: ['customer']
+    }),
     customer: builder.mutation({
       query: ({ customerData, token }) => ({
         url: `/customer/createCustomer`,
         method: "POST",
         body: customerData,
         headers: { "x-access-token": token }
-      })
+      }),
+      invalidatesTags: ['customer']
     }),
-    getCustomer: builder.query({
-      query: ({ token }) => ({
-        url: `/customer/getAllCustomer`,
-        method: "GET",
-        headers: { "x-access-token": token }
-      })
-    }),
+
     customerDelete: builder.mutation({
-      query: ({ token, customerId }) => ({
-        url: `/customer/deleteCustomer/${customerId}`,
-        method: "GET",
-        headers: { "x-access-token": token }
-      })
+      query: ({ token, id }) => ({
+        url: `/customer/deleteCustomer/${id}`,
+        method: "DELETE",
+        headers: { "x-access-token": token },
+
+      }),
+      invalidatesTags: ['customer']
+    }),
+    customerEdit: builder.mutation({
+      query: ({ customerData,token, id }) => ({
+        url: `/customer/editCustomer/${id}`,
+        method: "PATCH",
+        body: customerData,
+        headers: { "x-access-token": token },
+      }),
+      invalidatesTags: ['customer']
     }),
   })
 })
@@ -47,7 +62,9 @@ const shopApiSlice = createApi({
 export default shopApiSlice
 export const {
   useRegisterMutation,
-  useLoginMutation, useCustomerMutation,
+  useLoginMutation,
+  useCustomerMutation,
   useGetCustomerQuery,
-  useCustomerDeleteMutation 
+  useCustomerDeleteMutation,
+  useCustomerEditMutation
 } = shopApiSlice

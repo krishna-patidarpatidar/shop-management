@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
-import { useGetCustomerQuery } from '../Redux/serviec';
-
+import { useCustomerDeleteMutation, useGetCustomerQuery } from '../Redux/serviec';
 const Contect = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [deleteCustomer] = useCustomerDeleteMutation()
 
   const token = localStorage.getItem("auth");
   const { data, error, isLoading } = useGetCustomerQuery({ token });
-
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error fetching customers.</p>;
 
   const customers = data?.data || []; // Check if data exists and fallback to an empty array
 
-  const handleDelete = (index) => {
-    const updatedCustomers = customers.filter((_, i) => i !== index);
-    
+  const handleDelete = async (customerId) => {
+    try {
+      await deleteCustomer({ id: customerId, token });
+      console.log('Customer deleted successfully');
+      // Optionally, you can refetch the customer list or remove the deleted customer from the local state
+    } catch (error) {
+      console.error('Error deleting customer:', error);
+    }
   };
-
-  const handleEdit = (index) => {
-    const customerToEdit = customers[index];
-    navigate('add-contact', { state: { customer: customerToEdit, index } });
-  };
+  
 
   return (
     <div>
@@ -47,16 +47,16 @@ const Contect = () => {
             </thead>
             <tbody>
               {customers.length > 0 ? (
-                customers.map((customer, index) => (
-                  <tr key={index} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                customers.map((customer) => (
+                  <tr key={customer._id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                     <td className="px-6 py-4">{customer.name}</td>
                     <td className="px-6 py-4">{customer.mobile}</td>
                     <td className="px-6 py-4">{customer.address}</td>
                     <td className="px-6 py-4">
-                      <button onClick={() => handleEdit(index)} className="px-2 py-1 text-white bg-blue-500 rounded">
-                        Edit
+                      <button onClick={() => handleEdit(customer._id)} className="px-2 py-1 text-white bg-blue-500 rounded">
+                        <Link to={`edit-contact/${customer._id}?name=${customer.name}&mobile=${customer.mobile}&address=${customer.address}`}>Edit</Link>
                       </button>
-                      <button onClick={() => handleDelete(index)} className="px-2 py-1 text-white bg-red-500 rounded">
+                      <button onClick={() => handleDelete(customer._id)} className="px-2 py-1 text-white bg-red-500 rounded">
                         Delete
                       </button>
                       <button className="px-2 py-1 text-white bg-blue-500 rounded">
