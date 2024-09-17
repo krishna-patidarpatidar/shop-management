@@ -56,11 +56,49 @@ const shopApiSlice = createApi({
       }),
       invalidatesTags: ['customer']
     }),
+    createBill: builder.mutation({
+      query: ({ billData,token}) => ({
+        url: `/bill/createBill`,
+        method: "POST",
+        body: billData,
+        headers: { "x-access-token": token },
+      }),
+      invalidatesTags: ['bill']
+    }),
+    getBill: builder.query({
+      query: ({token}) => ({
+        url: `/bill/getBills`,
+        method: "GET",
+        headers: { "x-access-token": token },
+      }),
+      invalidatesTags: ['bill']
+    }),
+    addProducts: builder.mutation({
+      query: ({ productData,token}) => ({
+        url: `/product/addProducts`,
+        method: "POST",
+        body: productData,
+        headers: { "x-access-token": token },
+      }),
+      invalidatesTags: ['products']
+    }),
+    getProducts: builder.query({
+      query: ({token}) => ({
+        url: `/product/getProducts`,
+        method: "GET",
+        headers: { "x-access-token": token },
+      }),
+      invalidatesTags: ['products']
+    }),
   })
 })
 
 export default shopApiSlice
 export const {
+  useGetBillQuery,
+  useGetProductsQuery,
+  useAddProductsMutation,
+  useCreateBillMutation,
   useRegisterMutation,
   useLoginMutation,
   useCustomerMutation,

@@ -13,12 +13,12 @@ const SideBar = ({ isSidebarOpen, closeSidebar }) => {
 
   const Logout = () => {
     alert('you are logged out');
-    navigate('/');
+    localStorage.clear("auth")
   };
 
   return (
     <aside
-      className={`bg-gray-800 absolute lg:top-[148px] top-[122px] h-screen text-white w-48 md:w-64 space-y-6  px-2   inset-y-0 left-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full '} transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:w-64 text-2xl  md:text-4xl`}
+      className={`bg-gray-800 absolute z-20 lg:top-[148px] top-[149px] h-full md:h-screen text-white w-48 md:w-64 space-y-6  px-2   inset-y-0 left-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full '} transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:w-64 text-2xl  md:text-4xl`}
     >
       <nav >
         <Link to={'deshBord'} onClick={closeSidebar}>
