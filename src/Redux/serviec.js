@@ -73,6 +73,22 @@ const shopApiSlice = createApi({
       }),
       invalidatesTags: ['bill']
     }),
+    getInvoiceBill: builder.query({
+      query: ({token, INVNo}) => ({
+        url: `/bill/getCustomerBill/${INVNo}`,
+        method: "GET",
+        headers: { "x-access-token": token },
+      }),
+      invalidatesTags: ['bill']
+    }),
+    deleteInvoice: builder.mutation({
+      query: ({token, INVNo}) => ({
+        url: `/bill/deleteBills/${INVNo}`,
+        method: "DELETE",
+        headers: { "x-access-token": token },
+      }),
+      invalidatesTags: ['bill']
+    }),
     addProducts: builder.mutation({
       query: ({ productData,token}) => ({
         url: `/product/addProducts`,
@@ -95,6 +111,8 @@ const shopApiSlice = createApi({
 
 export default shopApiSlice
 export const {
+  useDeleteInvoiceMutation,
+  useGetInvoiceBillQuery,
   useGetBillQuery,
   useGetProductsQuery,
   useAddProductsMutation,

@@ -1,12 +1,14 @@
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import { useGetBillQuery } from '../Redux/serviec';
-
+import { useGetInvoiceBillQuery } from '../Redux/serviec';
+import { useParams } from 'react-router-dom';
+import { formatDate } from '../config/DateHelper';
 const ShowBill = () => {
-    const token = localStorage.getItem("auth");
-    const { data, isError, isLoading } = useGetBillQuery({ token });
+    const token = localStorage.getItem("auth")
+    const { INVNo } = useParams()
+    const { data, isError, isLoading } = useGetInvoiceBillQuery({ token, INVNo })
     const contentToPrint = useRef(null);
-
+    console.log(data,"data bill")
     const handlePrint = useReactToPrint({
         documentTitle: "Print This Document",
         content: () => contentToPrint.current,
@@ -30,8 +32,7 @@ const ShowBill = () => {
             </div>
 
             <div ref={contentToPrint} className="mt-3">
-                {data?.data?.map((bill, billIndex) => (
-                    <div key={bill._id} className="border md:w-[900px] rounded-lg mx-auto w-[450px] p-4 shadow-lg mb-6">
+                    <div className="border md:w-[900px] rounded-lg mx-auto w-[450px] p-4 shadow-lg mb-6">
                         {/* Invoice Header */}
                         <div className='flex justify-between border-b-[3px] md:pt-5'>
                             <div className='flex items-center'>
@@ -54,16 +55,16 @@ const ShowBill = () => {
                         <div className="flex justify-between mt-4">
                             <div className="mb-4 md:mb-0">
                                 <h1>INVOICE TO :</h1>
-                                <h1 className="text-sm md:text-xl">{bill.customerName}</h1>
-                                <h1 className="text-[10px] md:text-sm">Mo.No: 8251012624</h1>
+                                <h1 className="text-sm md:text-xl">{data.data?.customerName}</h1>
+                                <h1 className="text-[10px] md:text-sm">Mo.No: {data.data?.mobile}</h1>
                             </div>
                             <div className="text-center">
-                                <p>Date: {new Date(bill.invoiceDate).toLocaleDateString()}</p>
-                                <p>Invoice No: {bill.invoiceNumber}</p>
+                                <p>Date: {formatDate(data.data?.invoiceDate)}</p>
+                                <p>Invoice No: {data.data?.invoiceNumber}</p>
                             </div>
                             <div className="text-right">
                                 <h1>TOTAL DUE :</h1>
-                                <h1>INR: ₹ {bill.dueAmount}</h1>
+                                <h1>INR: ₹ {data.data?.dueAmount}</h1>
                             </div>
                         </div>
 
@@ -80,9 +81,9 @@ const ShowBill = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {bill.products.map((product, index) => (
+                                    {data.data.products?.map((product,i) => (
                                         <tr key={product._id}>
-                                            <td className="p-4">{index + 1}</td>
+                                            <td className="p-4">{i+1}</td>
                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 text-left">
                                                 {product.name}
                                             </th>
@@ -93,7 +94,7 @@ const ShowBill = () => {
                                     ))}
                                     <tr>
                                         <td colSpan={4} className="p-4 text-right font-semibold">Sub Total</td>
-                                        <td className="px-6 py-4">{bill.totalAmount}</td>
+                                        <td className="px-6 py-4">{data.data.totalAmount}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -111,11 +112,11 @@ const ShowBill = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{bill.totalAmount}</td>
-                                    <td>{bill.onlineAmount}</td>
-                                    <td>{bill.cashAmount}</td>
-                                    <td>{bill.dueAmount}</td>
-                                    <td>{new Date(bill.dueDate).toLocaleDateString()}</td>
+                                    <td>{data.data?.totalAmount}</td>
+                                    <td>{data.data?.onlineAmount}</td>
+                                    <td>{data.data?.cashAmount}</td>
+                                    <td>{data.data?.dueAmount}</td>
+                                    <td>{new Date(data.data?.dueDate).toLocaleDateString()}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -134,7 +135,6 @@ const ShowBill = () => {
                             </div>
                         </div>
                     </div>
-                ))}
             </div>
         </>
     );

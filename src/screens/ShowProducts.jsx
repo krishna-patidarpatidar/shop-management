@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGetProductsQuery } from '../Redux/serviec'; // Make sure the service file is correctly imported
+import { Link } from 'react-router-dom';
 
 const token = localStorage.getItem("auth");
 
@@ -19,8 +20,13 @@ const ShowProducts = () => {
   }
 
   return (
-    <div className='text-center mt-40'>
-      <h1 className="text-2xl font-bold mb-4">Products List</h1>
+    <div className='text-center mt-40 mx-auto max-w-[700px]'>
+      <div className='flex justify-between'>
+        <h1 className="text-2xl font-bold mb-4">Products List</h1>
+        <Link to={'/admin/add-product'}>
+          <button className=''>Add New</button>
+        </Link>
+      </div>
       <table className="min-w-full bg-white border">
         <thead>
           <tr>

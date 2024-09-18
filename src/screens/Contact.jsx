@@ -12,7 +12,7 @@ const Contect = () => {
   if (error) return <p>Error fetching customers.</p>;
 
   const customers = data?.data || []; // Check if data exists and fallback to an empty array
-
+  console.log(customers)
   const handleDelete = async (customerId) => {
     try {
       await deleteCustomer({ id: customerId, token });
@@ -22,7 +22,7 @@ const Contect = () => {
       console.error('Error deleting customer:', error);
     }
   };
-  
+
 
   return (
     <div>

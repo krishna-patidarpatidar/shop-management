@@ -5,14 +5,11 @@ const Auth = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setInterval(() => {
       const token = localStorage.getItem("auth");
     if (!token) {
-        navigate("/");
+      navigate("/");
         
       }
-    }, 1000);
-    return () => clearInterval(timer);
   }, []);
 
   return <>{children}</>;

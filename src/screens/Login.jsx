@@ -23,7 +23,6 @@ const Login = () => {
                     onSubmit={(values, { setSubmitting }) => {
                         login(values)
                             .then((data) => {
-                                console.log(data)
                                 // Storing token or user data after login
                                 localStorage.setItem('auth', data.data.token);
                                 if(data.data.status){
@@ -60,7 +59,7 @@ const Login = () => {
                                     placeholder="Enter a valid email"
                                 />
                                 {touched.email && errors.email && (
-                                    <span className="text-red-600 text-sm mt-1">{errors.email}</span>
+                                    <span className="text-red-600 absolute mt-[58px] text-sm mt-1">{errors.email}</span>
                                 )}
                             </div>
 
@@ -76,7 +75,7 @@ const Login = () => {
                                     placeholder="Enter your password"
                                 />
                                 {touched.password && errors.password && (
-                                    <span className="text-red-600 text-sm mt-1">{errors.password}</span>
+                                    <span className="text-red-600 absolute mt-[58px] text-sm mt-1">{errors.password}</span>
                                 )}
                             </div>
 

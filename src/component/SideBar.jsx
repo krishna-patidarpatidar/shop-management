@@ -4,16 +4,15 @@ import { RiBillLine, RiAdminFill } from "react-icons/ri";
 import { FaRegHandshake } from "react-icons/fa";
 import { CiAlarmOn } from "react-icons/ci";
 import { IoSettingsOutline } from "react-icons/io5";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SideBar = ({ isSidebarOpen, closeSidebar }) => {
-  const [showSubMenu, setShowSubMenu] = useState(false);
   const [showSubMenu1, setShowSubMenu1] = useState(false);
-  const navigate = useNavigate();
 
   const Logout = () => {
     alert('you are logged out');
     localStorage.clear("auth")
+    window.location.reload();
   };
 
   return (
@@ -28,31 +27,14 @@ const SideBar = ({ isSidebarOpen, closeSidebar }) => {
           </div>
         </Link>
 
-        <div
-          className="relative"
-          onMouseEnter={() => setShowSubMenu(true)}
-          onMouseLeave={() => setShowSubMenu(false)}
-        >
+        <Link to={'show-products'}>
           <div className="flex py-4 gap-2 items-center font-bold border-b-2">
             <MdProductionQuantityLimits />
             Products
           </div>
+        </Link>
 
-          {showSubMenu && (
-            <ul className=" w-[175px] flex flex-col gap-1 p-2  text-[20px] font-normal">
-              <Link to={'add-product'} onClick={closeSidebar}>
-                <li className="py-2 px-4 bg-sky-700 hover:bg-gray-500 rounded-lg">
-                  Add Product
-                </li>
-              </Link>
-              <Link to={'show-products'} onClick={closeSidebar}>
-                <li className="py-2 px-4 bg-sky-700 hover:bg-gray-500 rounded-lg">
-                  Show Products
-                </li>
-              </Link>
-            </ul>
-          )}
-        </div>
+
 
         <Link to={'bills'} onClick={closeSidebar}>
           <div className="flex py-4 gap-2 items-center font-bold border-b-2">

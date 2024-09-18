@@ -49,7 +49,7 @@ const router = createBrowserRouter([
                 element: <DeshBord />,
             },
             {
-                path: 'add-product',
+                path: '/admin/add-product',
                 element: <AddProducts />,
             },
             {
@@ -65,11 +65,11 @@ const router = createBrowserRouter([
                         element: <AddBill />
                     },
                     {
-                        path: 'show-bill',
+                        path: 'show-bill/:INVNo',
                         element: <ShowBill />
                     },
                     {
-                        path: 'payment-in',
+                        path: 'payment-in/:invId',
                         element: <PamentIn />
                     },
                 ],

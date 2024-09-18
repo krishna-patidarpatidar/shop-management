@@ -16,7 +16,7 @@ const validationSchema = Yup.object({
 
 const AddProducts = () => {
   const [addProducts] = useAddProductsMutation();
- const token = localStorage.getItem("auth")
+  const token = localStorage.getItem("auth")
   const initialValues = {
     name: '',
     sellingPrice: '',
@@ -25,7 +25,7 @@ const AddProducts = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
-    addProducts({productData: values,token})
+    addProducts({ productData: values, token })
       .then((response) => {
         console.log('Product Added:', response);
         resetForm();
