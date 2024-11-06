@@ -20,7 +20,6 @@ const AdminPage = () => {
     <div className="flex flex-1">
     <SideBar isSidebarOpen={isSidebarOpen} closeSidebar={closeSidebar} />
       <main className="flex-1 p-4 h-auto w-full ">
-        <h1>Deesm</h1>
       <Outlet/>
       </main>
     </div>

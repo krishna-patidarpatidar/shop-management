@@ -13,13 +13,14 @@ const PamentIn = () => {
         onAfterPrint: () => console.log("after printing..."),
         removeAfterPrint: true,
     });
-    return (<>
-       <div className='text-right'>
-       <button
-            onClick={() => {
-                handlePrint(null, () => contentToPrint.current);
-            }}> PRINT</button>
-       </div>
+    return (
+    <div className='mt-40'>
+        <div className='text-center '>
+            <button
+                onClick={() => {
+                    handlePrint(null, () => contentToPrint.current);
+                }}> PRINT</button>
+        </div>
 
 
         <div ref={contentToPrint} className="max-w-[500px] mx-auto p-4 bg-white shadow-lg rounded-lg">
@@ -73,7 +74,7 @@ const PamentIn = () => {
                 </button>
             </div>
         </div>
-    </>
+    </div>
     );
 }
 

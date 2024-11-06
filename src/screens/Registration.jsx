@@ -26,7 +26,7 @@ const Registration = () => {
               .then((data) => {
                 // Storing token or user data after login
                 localStorage.setItem('auth', data.data.token);
-                console.log(data.data.token,"register")
+                console.log(data.data.token, "register")
 
                 Toast.successMsg(data.data.msg);
                 if (data.data.msg === "user login successfully") {
